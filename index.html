@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#13c1ac">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <title>buscaRoom — Encuentra tu compañero ideal de piso</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+
+  <!-- ── Navbar ─────────────────────────────────────────────── -->
+  <nav class="navbar">
+    <div class="navbar-inner">
+      <a href="./" class="logo"><img src="favicon.svg" alt="" class="logo-mark"><span class="busca">busca</span><span
+          class="room">Room</span></a>
+      <div class="nav-links">
+
+
+        <!-- Botón Dark Mode -->
+        <button class="nav-icon-btn" id="themeToggle" title="Modo oscuro/claro">
+          <svg class="icon icon-moon" viewBox="0 0 24 24">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+          </svg>
+          <svg class="icon icon-sun" viewBox="0 0 24 24" style="display:none;">
+            <circle cx="12" cy="12" r="5" />
+            <line x1="12" y1="1" x2="12" y2="3" />
+            <line x1="12" y1="21" x2="12" y2="23" />
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+            <line x1="1" y1="12" x2="3" y2="12" />
+            <line x1="21" y1="12" x2="23" y2="12" />
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+          </svg>
+        </button>
+
+        <a href="pages/pisos.html" class="nav-text-link hide-mobile">
+          <svg class="icon" viewBox="0 0 24 24">
+            <path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18" />
+            <path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2" />
+            <path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2" />
+            <path d="M10 6h4" />
+            <path d="M10 10h4" />
+            <path d="M10 14h4" />
+            <path d="M10 18h4" />
+          </svg>
+          <span class="i18n-ver-pisos">Ver pisos</span>
+        </a>
+        <a href="pages/panel.html" class="btn btn-teal">
+          <svg class="icon" viewBox="0 0 24 24">
+            <rect x="3" y="3" width="7" height="7" />
+            <rect x="14" y="3" width="7" height="7" />
+            <rect x="14" y="14" width="7" height="7" />
+            <rect x="3" y="14" width="7" height="7" />
+          </svg>
+          <span class="i18n-panel">Panel</span>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ── Hero ───────────────────────────────────────────────── -->
+  <section class="hero">
+    <div class="hero-bg">
+      <img src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=1920&q=80"
+        alt="Compañeros de piso">
+      <div class="hero-overlay"></div>
+    </div>
+    <div class="hero-content">
+      <h1 class="hero-title">
+        Encuentra tu compañero<br>
+        <span class="accent">ideal de piso</span>
+      </h1>
+      <p class="hero-subtitle">Matching por estilo de vida, música y convivencia. Sin sorpresas.</p>
+      <div class="hero-actions">
+        <a href="pages/explorar.html" class="btn btn-cyan btn-xl">
+          <svg class="icon" viewBox="0 0 24 24">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+            <circle cx="9" cy="7" r="4" />
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+            <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+          </svg>
+          <span class="i18n-hero-cta">Descubrir compañeros</span>
+          <svg class="icon" viewBox="0 0 24 24">
+            <line x1="5" y1="12" x2="19" y2="12" />
+            <polyline points="12 5 19 12 12 19" />
+          </svg>
+        </a>
+        <a href="pages/pisos.html" class="btn btn-glass btn-xl">
+          <svg class="icon" viewBox="0 0 24 24">
+            <path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18" />
+            <path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2" />
+            <path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2" />
+            <path d="M10 6h4" />
+            <path d="M10 10h4" />
+            <path d="M10 14h4" />
+            <path d="M10 18h4" />
+          </svg>
+          <span class="i18n-ver-pisos-hero">Ver pisos disponibles</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Publicar (solo visible con sesión) ─────────────────── -->
+  <div style="max-width:1024px;margin:0 auto;padding:1rem 1.5rem;display:flex;justify-content:flex-end;">
+    <a href="pages/publicar.html" class="btn btn-outline-teal btn-sm"
+      style="border-radius:9999px;font-size:0.875rem;padding:0.625rem 1.25rem;">
+      <svg class="icon icon-sm" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="10" />
+        <line x1="12" y1="8" x2="12" y2="16" />
+        <line x1="8" y1="12" x2="16" y2="12" />
+      </svg>
+      <span class="i18n-publish-btn">Publicar mi habitación</span>
+    </a>
+  </div>
+
+  <!-- ── Perfiles destacados ─────────────────────────────────── -->
+  <section class="profiles-section">
+    <div class="container">
+      <div class="section-header">
+        <div>
+          <h2>Gente con tu mismo rollo</h2>
+          <p>Roomies verificados buscando casa ahora mismo</p>
+        </div>
+        <a href="pages/explorar.html" class="section-link">Ver todos</a>
+      </div>
+      <div class="profiles-grid">
+
+        <a href="pages/explorar.html" class="profile-card">
+          <div class="profile-avatar-wrapper">
+            <div class="profile-avatar-bg"></div>
+            <img class="profile-avatar"
+              src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=200&q=80"
+              alt="Sara" loading="lazy">
+            <div class="profile-online-dot"></div>
+          </div>
+          <div class="profile-name">Sara García, 24</div>
+          <div class="profile-city">Madrid</div>
+          <div class="profile-tags">
+            <span class="profile-tag">#LIMPIO</span>
+            <span class="profile-tag">#NOCTURNO</span>
+          </div>
+        </a>
+
+        <a href="pages/explorar.html" class="profile-card">
+          <div class="profile-avatar-wrapper">
+            <div class="profile-avatar-bg"></div>
+            <img class="profile-avatar"
+              src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80"
+              alt="Juan" loading="lazy">
+            <div class="profile-online-dot"></div>
+          </div>
+          <div class="profile-name">Juan López, 26</div>
+          <div class="profile-city">Barcelona</div>
+          <div class="profile-tags">
+            <span class="profile-tag">#TRANQUILO</span>
+            <span class="profile-tag">#ESTUDIANTE</span>
+          </div>
+        </a>
+
+        <a href="pages/explorar.html" class="profile-card">
+          <div class="profile-avatar-wrapper">
+            <div class="profile-avatar-bg"></div>
+            <img class="profile-avatar"
+              src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=200&q=80"
+              alt="Ana" loading="lazy">
+            <div class="profile-online-dot"></div>
+          </div>
+          <div class="profile-name">Ana Martín, 22</div>
+          <div class="profile-city">Valencia</div>
+          <div class="profile-tags">
+            <span class="profile-tag">#DEPORTIVO</span>
+            <span class="profile-tag">#VEGANO</span>
+          </div>
+        </a>
+
+        <a href="pages/explorar.html" class="profile-card">
+          <div class="profile-avatar-wrapper">
+            <div class="profile-avatar-bg"></div>
+            <img class="profile-avatar"
+              src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=200&q=80"
+              alt="Carlos" loading="lazy">
+            <div class="profile-online-dot"></div>
+          </div>
+          <div class="profile-name">Carlos Ruiz, 28</div>
+          <div class="profile-city">Sevilla</div>
+          <div class="profile-tags">
+            <span class="profile-tag">#MUSICAL</span>
+            <span class="profile-tag">#VIAJERO</span>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Habitaciones destacadas ─────────────────────────────── -->
+  <section class="rooms-section">
+    <div class="container">
+      <div class="section-header">
+        <h2>Últimas habitaciones publicadas</h2>
+        <a href="pages/pisos.html" class="section-link">Ver todas</a>
+      </div>
+      <div class="rooms-grid">
+
+        <a href="pages/piso-detalle.html" class="room-card">
+          <div class="room-image">
+            <img src="https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?auto=format&fit=crop&w=600&q=80"
+              alt="Habitación Malasaña" loading="lazy">
+            <div class="room-price-badge">550 €/mes</div>
+          </div>
+          <div class="room-title">Habitación luminosa en Malasaña</div>
+          <div class="room-meta">
+            <span class="room-meta-item">
+              <svg class="icon icon-sm" viewBox="0 0 24 24">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                <circle cx="12" cy="10" r="3" />
+              </svg>
+              Madrid
+            </span>
+            <span class="room-meta-item">
+              <svg class="icon icon-sm" viewBox="0 0 24 24">
+                <rect x="3" y="4" width="18" height="18" rx="2" />
+                <line x1="16" y1="2" x2="16" y2="6" />
+                <line x1="8" y1="2" x2="8" y2="6" />
+                <line x1="3" y1="10" x2="21" y2="10" />
+              </svg>
+              01/07/2026
+            </span>
+          </div>
+        </a>
+
+        <a href="pages/piso-detalle.html" class="room-card">
+          <div class="room-image">
+            <img src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=600&q=80"
+              alt="Piso Barcelona" loading="lazy">
+            <div class="room-price-badge">650 €/mes</div>
+          </div>
+          <div class="room-title">Piso céntrico con terraza en Eixample</div>
+          <div class="room-meta">
+            <span class="room-meta-item">
+              <svg class="icon icon-sm" viewBox="0 0 24 24">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                <circle cx="12" cy="10" r="3" />
+              </svg>
+              Barcelona
+            </span>
+            <span class="room-meta-item">
+              <svg class="icon icon-sm" viewBox="0 0 24 24">
+                <rect x="3" y="4" width="18" height="18" rx="2" />
+                <line x1="16" y1="2" x2="16" y2="6" />
+                <line x1="8" y1="2" x2="8" y2="6" />
+                <line x1="3" y1="10" x2="21" y2="10" />
+              </svg>
+              15/06/2026
+            </span>
+          </div>
+        </a>
+
+        <a href="pages/piso-detalle.html" class="room-card">
+          <div class="room-image">
+            <img src="https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&w=600&q=80"
+              alt="Estudio Valencia" loading="lazy">
+            <div class="room-price-badge">450 €/mes</div>
+          </div>
+          <div class="room-title">Estudio moderno cerca de la playa</div>
+          <div class="room-meta">
+            <span class="room-meta-item">
+              <svg class="icon icon-sm" viewBox="0 0 24 24">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                <circle cx="12" cy="10" r="3" />
+              </svg>
+              Valencia
+            </span>
+            <span class="room-meta-item">
+              <svg class="icon icon-sm" viewBox="0 0 24 24">
+                <rect x="3" y="4" width="18" height="18" rx="2" />
+                <line x1="16" y1="2" x2="16" y2="6" />
+                <line x1="8" y1="2" x2="8" y2="6" />
+                <line x1="3" y1="10" x2="21" y2="10" />
+              </svg>
+              01/06/2026
+            </span>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Video Promocional ──────────────────────────────────── -->
+  <section class="video-section" style="padding: 4rem 0; background: var(--bg);">
+    <div class="container">
+      <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; border-radius: 1.5rem; box-shadow: 0 20px 40px rgba(0,0,0,0.1);">
+        <video controls style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: inherit; background: #000;">
+          <source src="images/VideoCarmenPagina.mp4" type="video/mp4">
+          Tu navegador no soporta el formato de vídeo.
+        </video>
+      </div>
+      
+      <!-- Alternativa Textual para Discapacidad Visual (Transcripción) -->
+      <details style="margin-top: 1.5rem; background: var(--card); border: 1px solid var(--border); border-radius: 1rem; padding: 1rem;">
+        <summary style="cursor: pointer; font-weight: 700; color: var(--accent); display: flex; align-items: center; gap: 0.5rem;">
+          <svg viewBox="0 0 24 24" style="width:1.2rem;height:1.2rem;fill:none;stroke:currentColor;stroke-width:2;"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+          Alternativa Textual del Vídeo (Accesibilidad)
+        </summary>
+        <div style="margin-top: 1rem; font-size: 0.95rem; color: var(--text-color); line-height: 1.6;">
+          <strong>Transcripción del vídeo:</strong> El vídeo muestra al creador del proyecto hablando directamente a la cámara. En su discurso, expone la enorme dificultad que existe hoy en día para encontrar un compañero de piso adecuado, un problema cada vez más común entre jóvenes y estudiantes. A continuación, presenta <strong>buscaRoom</strong> como la solución definitiva a este problema. Explica que la idea principal de esta aplicación web no es solo buscar una habitación libre, sino conectar a personas que sean <strong>realmente compatibles entre sí</strong>. Mediante filtros de estilo de vida, horarios y aficiones, la plataforma permite encontrar a esa persona ideal con la que encajes al cien por cien para garantizar una buena convivencia.
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <!-- ── Features ───────────────────────────────────────────── -->
+  <section class="features-section">
+    <div class="container">
+      <div class="features-grid">
+
+        <div class="feature-item">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+              <polyline points="9 12 11 14 15 10" />
+            </svg>
+          </div>
+          <h3 class="feature-title">Reserva con total confianza</h3>
+          <p class="feature-desc">Verificamos la identidad de todos nuestros miembros para que sepas exactamente con
+            quién vas a convivir.</p>
+        </div>
+
+        <div class="feature-item">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24">
+              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+            </svg>
+          </div>
+          <h3 class="feature-title">Encuentra a tu pareja ideal</h3>
+          <p class="feature-desc">Compara perfiles, aficiones y estilos de vida para encontrar al compañero que encaje
+            contigo al 100%.</p>
+        </div>
+
+        <div class="feature-item">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24">
+              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+            </svg>
+          </div>
+          <h3 class="feature-title">Chatea y decide sin rodeos</h3>
+          <p class="feature-desc">Habla directamente con los anfitriones o futuros compañeros a través de nuestro chat
+            seguro antes de mudarte.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CTA Banner ─────────────────────────────────────────── -->
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-grid">
+        <div>
+          <h2 class="cta-title">¿Tienes una habitación<br>libre en casa?</h2>
+          <p class="cta-desc">Publica tu habitación gratis en menos de 2 minutos y encuentra al inquilino o compañero
+            que mejor encaje con tu estilo de vida.</p>
+          <a href="pages/publicar.html" class="btn btn-white-bg btn-lg"
+            style="border-radius:9999px;font-weight:900;font-size:1rem;padding:1rem 2rem;">Publicar ahora</a>
+        </div>
+        <div class="cta-image">
+          <img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=600&q=80"
+            alt="Habitación" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Footer ─────────────────────────────────────────────── -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-col-title">Cómo funciona</div>
+          <ul class="footer-links">
+            <li><a href="pages/pisos.html">Buscar habitación</a></li>
+            <li><a href="pages/publicar.html">Publicar piso</a></li>
+            <li><a href="#">Seguridad</a></li>
+            <li><a href="#">Vibe Check</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-col-title">Compañía</div>
+          <ul class="footer-links">
+            <li><a href="#">Sobre nosotros</a></li>
+            <li><a href="#">Prensa</a></li>
+            <li><a href="#">Empleo</a></li>
+            <li><a href="#">Contacto</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-col-title">Legal</div>
+          <ul class="footer-links">
+            <li><a href="#">Condiciones del servicio</a></li>
+            <li><a href="#">Política de privacidad</a></li>
+            <li><a href="#">Política de cookies</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-col-title">Descubre</div>
+          <ul class="footer-links">
+            <li><a href="pages/pisos.html">Pisos en Madrid</a></li>
+            <li><a href="pages/pisos.html">Pisos en Barcelona</a></li>
+            <li><a href="pages/pisos.html">Pisos en Valencia</a></li>
+            <li><a href="pages/explorar.html">Compañeros</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copyright">buscaRoom, 2026 © Todos los derechos reservados.</p>
+        <div class="footer-socials">
+          <a href="#">Facebook</a>
+          <a href="#">Instagram</a>
+          <a href="#">Twitter</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ── Scripts ────────────────────────────────────────────── -->
+  <script src="js/shared.js"></script>
+  <script>
+    const translations = {
+      es: {
+        navVerPisos: 'Ver pisos', navPanel: 'Panel',
+        heroTitle: 'Encuentra tu compañero<br><span class="accent">ideal de piso</span>',
+        heroSub: 'Matching por estilo de vida, música y convivencia. Sin sorpresas.',
+        heroBtn1: 'Descubrir compañeros', heroBtn2: 'Ver pisos disponibles',
+        publishBtn: 'Publicar mi habitación',
+        sec1Title: 'Gente con tu mismo rollo',
+        sec1Sub: 'Roomies verificados buscando casa ahora mismo',
+        sec1Link: 'Ver todos', sec2Title: 'Últimas habitaciones publicadas', sec2Link: 'Ver todas',
+        feat1Title: 'Reserva con total confianza',
+        feat1Desc: 'Verificamos la identidad de todos nuestros miembros para que sepas exactamente con quién vas a convivir.',
+        feat2Title: 'Encuentra a tu pareja ideal',
+        feat2Desc: 'Compara perfiles, aficiones y estilos de vida para encontrar al compañero que encaje contigo al 100%.',
+        feat3Title: 'Chatea y decide sin rodeos',
+        feat3Desc: 'Habla directamente con los anfitriones o futuros compañeros a través de nuestro chat seguro antes de mudarte.',
+        ctaTitle: '¿Tienes una habitación<br>libre en casa?',
+        ctaDesc: 'Publica tu habitación gratis en menos de 2 minutos y encuentra al inquilino o compañero que mejor encaje con tu estilo de vida.',
+        ctaBtn: 'Publicar ahora',
+        footerCol1: 'Cómo funciona', footerF1L: ['Buscar habitación', 'Publicar piso', 'Seguridad', 'Vibe Check'],
+        footerCol2: 'Compañía', footerF2L: ['Sobre nosotros', 'Prensa', 'Empleo', 'Contacto'],
+        footerCol3: 'Legal', footerF3L: ['Condiciones del servicio', 'Política de privacidad', 'Política de cookies'],
+        footerCol4: 'Descubre', footerF4L: ['Pisos en Madrid', 'Pisos en Barcelona', 'Pisos en Valencia', 'Compañeros'],
+        footerCopy: 'buscaRoom, 2026 © Todos los derechos reservados.',
+      },
+      en: {
+        navVerPisos: 'View flats', navPanel: 'Dashboard',
+        heroTitle: 'Find your perfect<br><span class="accent">flatmate</span>',
+        heroSub: 'Matching by lifestyle, music, and living habits. No surprises.',
+        heroBtn1: 'Find flatmates', heroBtn2: 'View available flats',
+        publishBtn: 'List my room',
+        sec1Title: 'People on your wavelength',
+        sec1Sub: 'Verified roomies looking for a place right now',
+        sec1Link: 'See all', sec2Title: 'Latest rooms posted', sec2Link: 'See all',
+        feat1Title: 'Book with total confidence',
+        feat1Desc: 'We verify the identity of all our members so you know exactly who you\'ll be living with.',
+        feat2Title: 'Find your perfect match',
+        feat2Desc: 'Compare profiles, hobbies and lifestyles to find the flatmate who fits you 100%.',
+        feat3Title: 'Chat and decide without the runaround',
+        feat3Desc: 'Talk directly with hosts or future flatmates through our secure chat before moving in.',
+        ctaTitle: 'Do you have a spare<br>room at home?',
+        ctaDesc: 'List your room for free in less than 2 minutes and find the tenant or flatmate who best fits your lifestyle.',
+        ctaBtn: 'List now',
+        footerCol1: 'How it works', footerF1L: ['Find a room', 'List a flat', 'Safety', 'Vibe Check'],
+        footerCol2: 'Company', footerF2L: ['About us', 'Press', 'Jobs', 'Contact'],
+        footerCol3: 'Legal', footerF3L: ['Terms of service', 'Privacy policy', 'Cookie policy'],
+        footerCol4: 'Discover', footerF4L: ['Flats in Madrid', 'Flats in Barcelona', 'Flats in Valencia', 'Flatmates'],
+        footerCopy: 'buscaRoom, 2026 © All rights reserved.',
+      },
+      fr: {
+        navVerPisos: 'Voir appartements', navPanel: 'Tableau de bord',
+        heroTitle: 'Trouvez votre colocataire<br><span class="accent">idéal</span>',
+        heroSub: 'Matching par style de vie, musique et habitudes. Sans surprises.',
+        heroBtn1: 'Découvrir colocataires', heroBtn2: 'Voir appartements disponibles',
+        publishBtn: 'Publier ma chambre',
+        sec1Title: 'Gens sur la même longueur d\'onde',
+        sec1Sub: 'Colocataires vérifiés cherchant un logement maintenant',
+        sec1Link: 'Voir tout', sec2Title: 'Dernières chambres publiées', sec2Link: 'Voir toutes',
+        feat1Title: 'Réservez en toute confiance',
+        feat1Desc: 'Nous vérifions l\'identité de tous nos membres pour que vous sachiez exactement avec qui vous allez vivre.',
+        feat2Title: 'Trouvez votre moitié idéale',
+        feat2Desc: 'Comparez profils, loisirs et styles de vie pour trouver le colocataire qui vous correspond à 100%.',
+        feat3Title: 'Discutez et décidez sans détours',
+        feat3Desc: 'Parlez directement avec les hôtes ou futurs colocataires via notre chat sécurisé avant d\'emménager.',
+        ctaTitle: 'Avez-vous une chambre<br>libre ?',
+        ctaDesc: 'Publiez votre chambre gratuitement en moins de 2 minutes et trouvez le locataire ou colocataire qui correspond le mieux à votre style de vie.',
+        ctaBtn: 'Publier maintenant',
+        footerCol1: 'Comment ça marche', footerF1L: ['Chercher une chambre', 'Publier un appartement', 'Sécurité', 'Vibe Check'],
+        footerCol2: 'Entreprise', footerF2L: ['À propos de nous', 'Presse', 'Emplois', 'Contact'],
+        footerCol3: 'Légal', footerF3L: ['Conditions de service', 'Politique de confidentialité', 'Politique relative aux cookies'],
+        footerCol4: 'Découvrir', footerF4L: ['Appartements à Madrid', 'Appartements à Barcelone', 'Appartements à Valence', 'Colocataires'],
+        footerCopy: 'buscaRoom, 2026 © Tous droits réservés.',
+      },
+      de: {
+        navVerPisos: 'Wohnungen ansehen', navPanel: 'Dashboard',
+        heroTitle: 'Finde deinen perfekten<br><span class="accent">Mitbewohner</span>',
+        heroSub: 'Matching nach Lebensstil, Musik und Gewohnheiten. Keine Überraschungen.',
+        heroBtn1: 'Mitbewohner entdecken', heroBtn2: 'Verfügbare Wohnungen',
+        publishBtn: 'Mein Zimmer inserieren',
+        sec1Title: 'Leute auf deiner Wellenlänge',
+        sec1Sub: 'Verifizierte Mitbewohner, die jetzt ein Zuhause suchen',
+        sec1Link: 'Alle sehen', sec2Title: 'Neueste veröffentlichte Zimmer', sec2Link: 'Alle sehen',
+        feat1Title: 'Buche mit vollem Vertrauen',
+        feat1Desc: 'Wir überprüfen die Identität all unserer Mitglieder, damit du genau weißt, mit wem du zusammenleben wirst.',
+        feat2Title: 'Finde deine ideale Ergänzung',
+        feat2Desc: 'Vergleiche Profile, Hobbys und Lebensstile, um den Mitbewohner zu finden, der zu 100% zu dir passt.',
+        feat3Title: 'Chatten und direkt entscheiden',
+        feat3Desc: 'Sprich direkt mit Gastgebern oder zukünftigen Mitbewohnern über unseren sicheren Chat, bevor du einziehst.',
+        ctaTitle: 'Hast du ein Zimmer<br>frei?',
+        ctaDesc: 'Inseriere dein Zimmer kostenlos in weniger als 2 Minuten und finde den Mieter oder Mitbewohner, der am besten zu deinem Lebensstil passt.',
+        ctaBtn: 'Jetzt inserieren',
+        footerCol1: 'Wie es funktioniert', footerF1L: ['Zimmer suchen', 'Wohnung inserieren', 'Sicherheit', 'Vibe Check'],
+        footerCol2: 'Unternehmen', footerF2L: ['Über uns', 'Presse', 'Jobs', 'Kontakt'],
+        footerCol3: 'Rechtliches', footerF3L: ['Nutzungsbedingungen', 'Datenschutzrichtlinie', 'Cookie-Richtlinie'],
+        footerCol4: 'Entdecken', footerF4L: ['Wohnungen in Madrid', 'Wohnungen in Barcelona', 'Wohnungen in Valencia', 'Mitbewohner'],
+        footerCopy: 'buscaRoom, 2026 © Alle Rechte vorbehalten.',
+      },
+      it: {
+        navVerPisos: 'Vedi appartamenti', navPanel: 'Bacheca',
+        heroTitle: 'Trova il tuo coinquilino<br><span class="accent">ideale</span>',
+        heroSub: 'Matching per stile di vita, musica e abitudini. Senza sorprese.',
+        heroBtn1: 'Scopri coinquilini', heroBtn2: 'Vedi appartamenti disponibili',
+        publishBtn: 'Pubblica la mia stanza',
+        sec1Title: 'Persone sulla tua stessa lunghezza d\'onda',
+        sec1Sub: 'Coinquilini verificati che cercano casa in questo momento',
+        sec1Link: 'Vedi tutti', sec2Title: 'Ultime stanze pubblicate', sec2Link: 'Vedi tutte',
+        feat1Title: 'Prenota in totale sicurezza',
+        feat1Desc: 'Verifichiamo l\'identità di tutti i nostri membri in modo che tu sappia esattamente con chi andrai a vivere.',
+        feat2Title: 'Trova la tua anima gemella',
+        feat2Desc: 'Confronta profili, hobby e stili di vita per trovare il coinquilino che ti corrisponde al 100%.',
+        feat3Title: 'Chatta e decidi senza giri di parole',
+        feat3Desc: 'Parla direttamente con i padroni di casa o futuri coinquilini tramite la nostra chat sicura prima di trasferirti.',
+        ctaTitle: 'Hai una stanza<br>libera in casa?',
+        ctaDesc: 'Pubblica la tua stanza gratuitamente in meno di 2 minuti e trova l\'inquilino o il coinquilino che si adatta meglio al tuo stile di vita.',
+        ctaBtn: 'Pubblica ora',
+        footerCol1: 'Come funziona', footerF1L: ['Cerca una stanza', 'Pubblica un appartamento', 'Sicurezza', 'Vibe Check'],
+        footerCol2: 'Azienda', footerF2L: ['Chi siamo', 'Stampa', 'Lavoro', 'Contatti'],
+        footerCol3: 'Legale', footerF3L: ['Termini di servizio', 'Informativa sulla privacy', 'Informativa sui cookie'],
+        footerCol4: 'Scopri', footerF4L: ['Appartamenti a Madrid', 'Appartamenti a Barcellona', 'Appartamenti a Valencia', 'Coinquilini'],
+        footerCopy: 'buscaRoom, 2026 © Tutti i diritti riservati.',
+      },
+      pt: {
+        navVerPisos: 'Ver apartamentos', navPanel: 'Painel',
+        heroTitle: 'Encontra o teu colega<br><span class="accent">ideal</span>',
+        heroSub: 'Matching por estilo de vida, música e hábitos. Sem surpresas.',
+        heroBtn1: 'Descobrir colegas', heroBtn2: 'Ver apartamentos disponíveis',
+        publishBtn: 'Publicar o meu quarto',
+        sec1Title: 'Pessoas na tua onda',
+        sec1Sub: 'Colegas verificados à procura de casa neste momento',
+        sec1Link: 'Ver todos', sec2Title: 'Últimos quartos publicados', sec2Link: 'Ver todos',
+        feat1Title: 'Reserva com total confiança',
+        feat1Desc: 'Verificamos a identidade de todos os nossos membros para que saibas exatamente com quem vais viver.',
+        feat2Title: 'Encontra o teu par ideal',
+        feat2Desc: 'Compara perfis, passatempos e estilos de vida para encontrar o colega que combina contigo a 100%.',
+        feat3Title: 'Conversa e decide diretamente',
+        feat3Desc: 'Fala diretamente com os anfitriões ou futuros colegas através do nosso chat seguro antes de te mudares.',
+        ctaTitle: 'Tens um quarto<br>livre em casa?',
+        ctaDesc: 'Publica o teu quarto gratuitamente em menos de 2 minutos e encontra o inquilino ou colega que melhor se adapta ao teu estilo de vida.',
+        ctaBtn: 'Publicar agora',
+        footerCol1: 'Como funciona', footerF1L: ['Procurar um quarto', 'Publicar um apartamento', 'Segurança', 'Vibe Check'],
+        footerCol2: 'Empresa', footerF2L: ['Sobre nós', 'Imprensa', 'Empregos', 'Contactos'],
+        footerCol3: 'Legal', footerF3L: ['Termos de serviço', 'Política de privacidade', 'Política de cookies'],
+        footerCol4: 'Descobrir', footerF4L: ['Apartamentos em Madrid', 'Apartamentos em Barcelona', 'Apartamentos em Valência', 'Colegas de casa'],
+        footerCopy: 'buscaRoom, 2026 © Todos os direitos reservados.',
+      }
+    };
+
+    let currentLang = 'es';
+
+    function applyLang(lang) {
+      const t = translations[lang] || translations['es'];
+      document.querySelector('.i18n-ver-pisos').textContent = t.navVerPisos;
+      document.querySelector('.i18n-panel').textContent = t.navPanel;
+      document.querySelector('.hero-title').innerHTML = t.heroTitle;
+      document.querySelector('.hero-subtitle').textContent = t.heroSub;
+      document.querySelector('.i18n-hero-cta').textContent = t.heroBtn1;
+      document.querySelector('.i18n-ver-pisos-hero').textContent = t.heroBtn2;
+      document.querySelector('.i18n-publish-btn').textContent = t.publishBtn;
+      const sec = document.querySelectorAll('.section-header');
+      sec[0].querySelector('h2').textContent = t.sec1Title;
+      sec[0].querySelector('p').textContent = t.sec1Sub;
+      sec[0].querySelector('.section-link').textContent = t.sec1Link;
+      sec[1].querySelector('h2').textContent = t.sec2Title;
+      sec[1].querySelector('.section-link').textContent = t.sec2Link;
+      document.querySelectorAll('.feature-item').forEach((f, i) => {
+        f.querySelector('.feature-title').textContent = t['feat' + (i + 1) + 'Title'];
+        f.querySelector('.feature-desc').textContent = t['feat' + (i + 1) + 'Desc'];
+      });
+      document.querySelector('.cta-title').innerHTML = t.ctaTitle;
+      document.querySelector('.cta-desc').textContent = t.ctaDesc;
+      document.querySelector('.cta-section .btn').textContent = t.ctaBtn;
+      document.querySelectorAll('.footer-grid > div').forEach((col, ci) => {
+        col.querySelector('.footer-col-title').textContent = t['footerCol' + (ci + 1)];
+        col.querySelectorAll('.footer-links a').forEach((a, li) => {
+          const list = t['footerF' + (ci + 1) + 'L'];
+          if (list && list[li]) a.textContent = list[li];
+        });
+      });
+      document.querySelector('.footer-copyright').textContent = t.footerCopy;
+    }
+
+    // Aplicar idioma guardado al cargar
+    const savedLang = localStorage.getItem('buscaroom-lang') || 'es';
+    applyLang(savedLang);
+
+    // Escuchar cambios de idioma desde el desplegable en shared.js
+    document.addEventListener('buscaroom:langchange', (e) => {
+      applyLang(e.detail.lang);
+    });
+  </script>
+</body>
+
+</html>

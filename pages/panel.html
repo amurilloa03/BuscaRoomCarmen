@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#13c1ac">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <title>Mi panel — buscaRoom</title>
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../css/panel.css">
+</head>
+<body class="panel-page">
+
+<aside class="panel-sidebar">
+  <a href="../index.html" class="sidebar-logo-link" style="background:transparent; padding:0;">
+    <img src="../favicon.svg" alt="buscaRoom" style="width:100%; height:100%; display:block; border-radius:0.75rem;">
+  </a>
+
+  <nav class="sidebar-nav">
+    <a href="panel.html" class="sidebar-nav-item active" title="Panel">
+      <svg class="icon" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+    </a>
+    <a href="explorar.html" class="sidebar-nav-item" title="Explorar">
+      <svg class="icon" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+    </a>
+    <a href="pisos.html" class="sidebar-nav-item" title="Pisos">
+      <svg class="icon" viewBox="0 0 24 24"><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18"/><path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"/><path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"/></svg>
+    </a>
+    <a href="mensajes.html" class="sidebar-nav-item" title="Mensajes">
+      <svg class="icon" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+    </a>
+  </nav>
+
+  <div class="sidebar-bottom">
+    <a href="#" class="sidebar-icon-btn" title="Configuración">
+      <svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+    </a>
+    <a href="acceder.html" class="sidebar-icon-btn" title="Cerrar sesión">
+      <svg class="icon" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+    </a>
+  </div>
+</aside>
+
+<main class="panel-main">
+
+  <header class="panel-header">
+    <h1 class="panel-header-title">Mi panel</h1>
+    <div class="panel-header-right">
+      <div class="panel-user">
+        <span class="panel-user-name">Alejandro Murillo</span>
+        <img class="panel-user-avatar" src="../images/IMG_7434-2.jpg" alt="Alejandro" onerror="this.src='https://images.unsplash.com/photo-1528892952291-009c663ce843?auto=format&fit=crop&w=80&q=80'">
+      </div>
+    </div>
+  </header>
+
+  <div class="panel-content">
+
+    <div class="panel-tabs">
+      <button class="panel-tab active">Perfil</button>
+      <button class="panel-tab">Mis anuncios</button>
+      <button class="panel-tab">Estancias</button>
+      <button class="panel-tab">Guardados <span style="background:var(--primary);color:white;border-radius:9999px;padding:0.1rem 0.45rem;font-size:0.625rem;margin-left:0.25rem;">3</span></button>
+      <button class="panel-tab">Matches</button>
+    </div>
+
+    <div class="profile-form-container">
+
+      <div class="active-toggle-card">
+        <div class="active-toggle-info">
+          <svg class="icon" viewBox="0 0 24 24" style="color:var(--secondary)"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+          <div>
+            <div class="active-toggle-title">Perfil activo</div>
+            <div class="active-toggle-desc">Tu perfil es visible para otros usuarios</div>
+          </div>
+        </div>
+        <div class="toggle-switch">
+          <div class="toggle-track"></div>
+          <div class="toggle-thumb"></div>
+        </div>
+      </div>
+
+      <div class="avatar-section">
+        <div class="avatar-upload">
+          <img src="../images/IMG_7434-2.jpg" alt="Alejandro" onerror="this.src='https://images.unsplash.com/photo-1528892952291-009c663ce843?auto=format&fit=crop&w=200&q=80'">
+          <div class="avatar-upload-btn">
+            <svg class="icon icon-sm" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+          </div>
+        </div>
+        <div class="avatar-info">
+          <div class="avatar-name">Alejandro Murillo</div>
+          <div class="avatar-city">Cáceres, España</div>
+          <div class="avatar-status">
+            <svg class="icon icon-sm" viewBox="0 0 24 24" fill="currentColor" stroke="none"><circle cx="12" cy="12" r="6"/></svg>
+            Activa
+          </div>
+        </div>
+      </div>
+
+      <div class="form-card">
+        <div class="form-card-title">Información básica</div>
+        <div class="form-grid">
+          <div class="form-group">
+            <label class="form-label">Nombre</label>
+            <input class="form-input" type="text" value="Alejandro Murillo">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Ciudad</label>
+            <input class="form-input" type="text" value="Cáceres">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Edad</label>
+            <input class="form-input" type="number" value="26">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Género</label>
+            <input class="form-input" type="text" value="Hombre">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Estado</label>
+            <input class="form-input" type="text" value="Soltera">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Ocupación</label>
+            <input class="form-input" type="text" value="Fotógrafo / Audiovisuales">
+          </div>
+          <div class="form-group full">
+            <label class="form-label">Sobre mí</label>
+            <textarea class="form-input form-textarea">Me dedico a la fotografía y la producción audiovisual. Soy una persona tranquila pero sociable, me encanta el cine, hacer rutas fotográficas y conocer gente nueva. Busco buen rollo y convivencia sana.</textarea>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-card">
+        <div class="form-card-title">Géneros musicales</div>
+        <div class="toggle-pills">
+          <button class="toggle-pill active">Pop</button>
+          <button class="toggle-pill active">Indie</button>
+          <button class="toggle-pill">Rock</button>
+          <button class="toggle-pill">Electrónica</button>
+          <button class="toggle-pill">Jazz</button>
+          <button class="toggle-pill active">R&amp;B</button>
+          <button class="toggle-pill">Hip-hop</button>
+          <button class="toggle-pill">Clásica</button>
+          <button class="toggle-pill">Reggaeton</button>
+          <button class="toggle-pill">Folk</button>
+        </div>
+      </div>
+
+      <div class="form-card">
+        <div class="form-card-title">Vibe Check</div>
+        <div class="toggle-pills">
+          <button class="toggle-pill active">Limpio</button>
+          <button class="toggle-pill active">Nocturno</button>
+          <button class="toggle-pill">Madrugador</button>
+          <button class="toggle-pill">Tranquilo</button>
+          <button class="toggle-pill">Social</button>
+          <button class="toggle-pill active">No fumador</button>
+          <button class="toggle-pill">Con mascota</button>
+          <button class="toggle-pill">Deportivo</button>
+          <button class="toggle-pill">Vegano</button>
+          <button class="toggle-pill">Estudiante</button>
+        </div>
+      </div>
+
+      <div class="form-card">
+        <div class="form-card-title">Hobbies</div>
+        <div class="toggle-pills">
+          <button class="toggle-pill active">Cocinar</button>
+          <button class="toggle-pill">Videojuegos</button>
+          <button class="toggle-pill active">Diseño</button>
+          <button class="toggle-pill">Viajes</button>
+          <button class="toggle-pill active">Cine</button>
+          <button class="toggle-pill">Yoga</button>
+          <button class="toggle-pill">Fotografía</button>
+          <button class="toggle-pill">Lectura</button>
+        </div>
+      </div>
+
+      <div class="form-card">
+        <div class="form-card-title">Galería de fotos</div>
+        <div class="gallery-grid">
+          <div class="gallery-img">
+            <img src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=300&q=80" alt="foto 1" loading="lazy">
+          </div>
+          <div class="gallery-img">
+            <img src="https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&w=300&q=80" alt="foto 2" loading="lazy">
+          </div>
+          <div class="gallery-img">
+            <img src="https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?auto=format&fit=crop&w=300&q=80" alt="foto 3" loading="lazy">
+          </div>
+          <button class="gallery-add">
+            <svg class="icon" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            Añadir
+          </button>
+          <button class="gallery-add">
+            <svg class="icon" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            Añadir
+          </button>
+          <button class="gallery-add">
+            <svg class="icon" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            Añadir
+          </button>
+        </div>
+      </div>
+
+      <div style="margin-top:1rem;display:flex;gap:0.75rem;">
+        <a href="publicar.html" class="btn btn-outline-teal" style="border-radius:0.75rem;flex:1;justify-content:center;">
+          <svg class="icon icon-sm" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+          Publicar habitación
+        </a>
+        <a href="mensajes.html" class="btn btn-teal" style="border-radius:0.75rem;flex:1;justify-content:center;">
+          <svg class="icon icon-sm" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          Mensajes
+        </a>
+      </div>
+
+      <button class="save-btn">
+        <svg class="icon" viewBox="0 0 24 24"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+        Guardar cambios
+      </button>
+
+    </div>
+  </div>
+</main>
+
+<script>
+  // ── Toggle pills (música, vibe, hobbies) ─────────────────────
+  document.querySelectorAll('.toggle-pill').forEach(pill => {
+    pill.addEventListener('click', () => pill.classList.toggle('active'));
+  });
+
+  // ── Toggle switch "Perfil activo" ────────────────────────────
+  const toggleSwitch = document.querySelector('.toggle-switch');
+  if (toggleSwitch) {
+    toggleSwitch.addEventListener('click', () => {
+      const isOff = toggleSwitch.classList.toggle('off');
+      document.querySelector('.active-toggle-title').textContent = isOff ? 'Perfil oculto' : 'Perfil activo';
+      document.querySelector('.active-toggle-desc').textContent = isOff
+        ? 'Tu perfil no es visible para otros usuarios'
+        : 'Tu perfil es visible para otros usuarios';
+    });
+  }
+
+  // ── Botones "Añadir" en galería ──────────────────────────────
+  document.querySelectorAll('.gallery-add').forEach(btn => {
+    btn.addEventListener('click', () => alert('Sube una foto desde tu dispositivo.'));
+  });
+
+  // ── Botón de subir avatar ────────────────────────────────────
+  const avatarUploadBtn = document.querySelector('.avatar-upload-btn');
+  if (avatarUploadBtn) {
+    avatarUploadBtn.addEventListener('click', () => alert('Cambia tu foto de perfil.'));
+  }
+
+  // ── Botón "Guardar cambios" ──────────────────────────────────
+  const saveBtn = document.querySelector('.save-btn');
+  if (saveBtn) {
+    saveBtn.addEventListener('click', () => {
+      const original = saveBtn.innerHTML;
+      saveBtn.innerHTML = `<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> ¡Cambios guardados!`;
+      saveBtn.style.background = 'linear-gradient(to right, #22c55e, #16a34a)';
+      setTimeout(() => {
+        saveBtn.innerHTML = original;
+        saveBtn.style.background = '';
+      }, 2000);
+    });
+  }
+
+  // ── Tabs del panel ───────────────────────────────────────────
+  const panelTabs = document.querySelectorAll('.panel-tab');
+  const formContainer = document.querySelector('.profile-form-container');
+
+  const tabPlaceholder = document.createElement('div');
+  tabPlaceholder.className = 'tab-empty';
+  tabPlaceholder.hidden = true;
+  formContainer.after(tabPlaceholder);
+
+  const tabContent = {
+    'Mis anuncios': `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18"/><path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"/><path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"/></svg><p>No tienes anuncios publicados aún.</p><a href="publicar.html" class="btn btn-teal" style="margin-top:1.25rem;border-radius:.75rem;">Publicar habitación</a>`,
+    'Estancias': `<p>No tienes estancias activas por el momento.</p>`,
+    'Guardados': `<p>Tienes <strong>3 pisos</strong> guardados.</p><a href="pisos.html" class="btn btn-outline-teal" style="margin-top:1.25rem;border-radius:.75rem;">Ver pisos guardados</a>`,
+    'Matches': `<p>Tienes <strong>2 matches</strong> nuevos.</p><a href="explorar.html" class="btn btn-cyan" style="margin-top:1.25rem;border-radius:.75rem;">Ver matches</a>`
+  };
+
+  panelTabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      panelTabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      const label = tab.firstChild.textContent.trim();
+      if (label === 'Perfil') {
+        formContainer.hidden = false;
+        tabPlaceholder.hidden = true;
+      } else {
+        formContainer.hidden = true;
+        tabPlaceholder.hidden = false;
+        tabPlaceholder.innerHTML = tabContent[label] || '<p>Próximamente.</p>';
+      }
+    });
+  });
+</script>
+<script src="../js/shared.js"></script>
+</body>
+</html>
+
+

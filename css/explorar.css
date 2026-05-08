@@ -1,0 +1,638 @@
+/* ═══════════════════════════════════════════════════════════════
+   buscaRoom — Estilos página Explorar
+   ═══════════════════════════════════════════════════════════════ */
+
+.explorar-page {
+  min-height: 100vh;
+  min-height: 100svh;
+  background: var(--gray-50);
+}
+
+/* Sub-header debajo de la navbar (top: 4rem) */
+.explorar-header {
+  position: fixed;
+  top: calc(4rem + env(safe-area-inset-top, 0px));
+  left: 0;
+  right: 0;
+  z-index: 99;
+  background: var(--card);
+  height: 4rem;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid var(--gray-100);
+}
+
+.explorar-header-inner {
+  max-width: 28rem;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.profile-count {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--gray-400);
+}
+
+.profile-count span {
+  color: var(--secondary);
+}
+
+.filters-btn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.5rem 1rem;
+  background: var(--gray-50);
+  border: 1px solid var(--gray-200);
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--accent);
+  cursor: pointer;
+  transition: all 0.15s;
+  text-decoration: none;
+}
+
+.filters-btn:hover {
+  background: var(--gray-100);
+}
+
+.filters-badge {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  width: 1.125rem;
+  height: 1.125rem;
+  background: var(--primary);
+  color: white;
+  border-radius: 9999px;
+  font-size: 0.5rem;
+  font-weight: 900;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* navbar(4rem) + sub-header(4rem) = 8rem fijos arriba */
+.explorar-content {
+  max-width: 28rem;
+  margin: 0 auto;
+  padding: calc(9rem + env(safe-area-inset-top, 0px)) 1.5rem 3rem;
+}
+
+.city-search {
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+.city-search svg {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  stroke: var(--gray-400);
+  fill: none;
+  width: 1.125rem;
+  height: 1.125rem;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  pointer-events: none;
+}
+
+.city-search input,
+.city-search select {
+  width: 100%;
+  padding: 0.875rem 1.25rem 0.875rem 2.75rem;
+  border: 2px solid var(--border);
+  border-radius: 1rem;
+  font-size: 0.875rem;
+  font-family: inherit;
+  background: var(--card);
+  color: var(--accent);
+  outline: none;
+  transition: border-color 0.2s;
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+}
+
+.city-search input:focus,
+.city-search select:focus {
+  border-color: var(--secondary);
+  box-shadow: 0 0 0 4px rgba(19, 193, 172, 0.1);
+}
+
+/* Para que la flecha nativa del select se vea a la derecha si queremos, o dejarla oculta por appearance:none.
+   Vamos a añadir un SVG de flecha a la derecha usando ::after en city-search, o simplemente background. */
+.city-search::after {
+  content: "";
+  position: absolute;
+  right: 1.25rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0.75rem;
+  height: 0.75rem;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%239ca3af' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  pointer-events: none;
+}
+
+/* ─── Stack de tarjetas ────────────────────────────────────── */
+.swipe-stack {
+  position: relative;
+  height: 480px;
+}
+
+.swipe-card {
+  position: absolute;
+  inset: 0;
+  border-radius: 1.5rem;
+  overflow: hidden;
+  background: var(--card);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+}
+
+.swipe-card-back {
+  transform: scale(0.97) translateY(8px);
+  z-index: 0;
+  filter: brightness(0.92);
+  pointer-events: none;
+}
+
+.swipe-card-front {
+  z-index: 1;
+}
+
+.swipe-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.swipe-card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.2) 50%, transparent);
+}
+
+.swipe-card-info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1.5rem;
+}
+
+.swipe-card-name {
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: white;
+  letter-spacing: -0.02em;
+}
+
+.swipe-card-city {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.6);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-top: 0.125rem;
+  margin-bottom: 0.75rem;
+}
+
+.swipe-score {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.25rem 0.75rem;
+  background: rgba(0, 175, 245, 0.9);
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 900;
+  color: white;
+  margin-bottom: 0.75rem;
+}
+
+.swipe-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.375rem;
+}
+
+.swipe-tag {
+  font-size: 0.625rem;
+  padding: 0.25rem 0.625rem;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(4px);
+  border-radius: 9999px;
+  color: rgba(255, 255, 255, 0.85);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+/* ─── Sin más tarjetas ─────────────────────────────────────── */
+.no-more-cards {
+  position: absolute;
+  inset: 0;
+  border-radius: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  background: var(--card);
+  border: 2px dashed var(--gray-200);
+}
+
+.no-more-cards p {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--gray-400);
+  text-align: center;
+}
+
+.no-more-cards svg {
+  opacity: 0.4;
+}
+
+/* ─── Botones de acción ────────────────────────────────────── */
+.swipe-actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1.5rem 0;
+}
+
+.btn-skip {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 9999px;
+  background: var(--card);
+  border: 2px solid var(--gray-200);
+  color: var(--gray-500);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.15s;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.btn-skip:hover:not(:disabled) {
+  background: #fee2e2;
+  border-color: #fca5a5;
+  color: #ef4444;
+}
+
+.btn-like {
+  width: 4.5rem;
+  height: 4.5rem;
+  border-radius: 9999px;
+  background: linear-gradient(135deg, #00aff5, #13c1ac);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.15s;
+  box-shadow: 0 8px 24px rgba(0, 175, 245, 0.35);
+  border: none;
+}
+
+.btn-like:hover:not(:disabled) {
+  transform: scale(1.08);
+  box-shadow: 0 12px 32px rgba(0, 175, 245, 0.45);
+}
+
+.btn-skip:disabled,
+.btn-like:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.swipe-hint {
+  text-align: center;
+  font-size: 0.75rem;
+  color: var(--gray-400);
+  font-weight: 500;
+}
+
+/* ─── Modal de perfil ──────────────────────────────────────── */
+.profile-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.profile-modal.open {
+  pointer-events: all;
+  opacity: 1;
+}
+
+.profile-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(6px);
+}
+
+.profile-modal-sheet {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 28rem;
+  background: var(--card);
+  border-radius: 1.75rem 1.75rem 0 0;
+  max-height: 90vh;
+  overflow-y: auto;
+  transform: translateY(100%);
+  transition: transform 0.38s cubic-bezier(0.34, 1.3, 0.64, 1);
+  box-shadow: 0 -8px 40px rgba(0, 0, 0, 0.2);
+}
+
+.profile-modal.open .profile-modal-sheet {
+  transform: translateY(0);
+}
+
+/* Indicador de arrastre */
+.profile-modal-sheet::before {
+  content: '';
+  display: block;
+  width: 2.5rem;
+  height: 0.25rem;
+  background: var(--gray-200);
+  border-radius: 9999px;
+  margin: 0.75rem auto 0;
+}
+
+.modal-close-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 10;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 9999px;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(4px);
+  border: none;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s;
+}
+
+.modal-close-btn:hover {
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.modal-photo-wrap {
+  position: relative;
+  height: 300px;
+  overflow: hidden;
+}
+
+.modal-photo-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.modal-photo-gradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, var(--card) 8%, transparent 55%);
+}
+
+.modal-compat-badge {
+  position: absolute;
+  bottom: 1rem;
+  left: 1.5rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.375rem 0.875rem;
+  background: rgba(0, 175, 245, 0.92);
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 900;
+  color: white;
+}
+
+.modal-body {
+  padding: 0.5rem 1.5rem 2rem;
+}
+
+.modal-name {
+  font-size: 1.75rem;
+  font-weight: 900;
+  color: var(--accent);
+  letter-spacing: -0.025em;
+  margin-bottom: 0.125rem;
+}
+
+.modal-location {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--gray-400);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 1rem;
+}
+
+.modal-tags-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.375rem;
+  margin-bottom: 1rem;
+}
+
+.modal-tag {
+  font-size: 0.6875rem;
+  padding: 0.3rem 0.75rem;
+  background: var(--gray-50);
+  border: 1px solid var(--gray-100);
+  border-radius: 9999px;
+  color: var(--secondary);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.modal-bio-text {
+  font-size: 0.9375rem;
+  color: var(--muted);
+  line-height: 1.65;
+  margin-bottom: 1.25rem;
+}
+
+.modal-info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.625rem;
+  margin-bottom: 1.5rem;
+}
+
+.modal-info-item {
+  background: var(--gray-50);
+  border-radius: 0.875rem;
+  padding: 0.75rem;
+  border: 1px solid var(--gray-100);
+}
+
+.modal-info-label {
+  font-size: 0.6rem;
+  font-weight: 900;
+  color: var(--gray-400);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.2rem;
+}
+
+.modal-info-value {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.modal-actions-row {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.modal-btn-skip {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.875rem;
+  border-radius: 1rem;
+  border: 2px solid var(--gray-200);
+  background: var(--card);
+  color: var(--gray-500);
+  font-size: 0.9375rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.15s;
+  font-family: inherit;
+}
+
+.modal-btn-skip:hover {
+  background: #fee2e2;
+  border-color: #fca5a5;
+  color: #ef4444;
+}
+
+.modal-btn-like {
+  flex: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.875rem;
+  border-radius: 1rem;
+  border: none;
+  background: linear-gradient(135deg, #00aff5, #13c1ac);
+  color: white;
+  font-size: 0.9375rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.15s;
+  box-shadow: 0 6px 20px rgba(0, 175, 245, 0.3);
+  font-family: inherit;
+}
+
+.modal-btn-like:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 28px rgba(0, 175, 245, 0.45);
+}
+
+/* ─── Responsive ────────────────────────────────────────────── */
+@media (max-width: 480px) {
+  .explorar-content {
+    padding: calc(9rem + env(safe-area-inset-top, 0px)) 1rem 3rem;
+  }
+
+  .swipe-stack {
+    height: 400px;
+  }
+
+  .swipe-card-name {
+    font-size: 1.25rem;
+  }
+
+  .swipe-actions {
+    gap: 1rem;
+    padding: 1rem 0;
+  }
+
+  .btn-skip {
+    width: 3.5rem;
+    height: 3.5rem;
+  }
+
+  .btn-like {
+    width: 4rem;
+    height: 4rem;
+  }
+
+  .profile-modal-sheet {
+    max-height: 95vh;
+  }
+
+  .modal-photo-wrap {
+    height: 220px;
+  }
+
+  .modal-body {
+    padding: 0.5rem 1.25rem 1.5rem;
+  }
+
+  .modal-name {
+    font-size: 1.375rem;
+  }
+
+  .modal-info-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+  }
+
+  .modal-info-item {
+    padding: 0.625rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .explorar-content {
+    padding: calc(8.5rem + env(safe-area-inset-top, 0px)) 0.75rem 2.5rem;
+  }
+
+  .swipe-stack {
+    height: 360px;
+  }
+
+  .modal-info-grid {
+    grid-template-columns: 1fr;
+  }
+}

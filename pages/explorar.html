@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#13c1ac">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <title>Explorar compañeros — buscaRoom</title>
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../css/explorar.css">
+</head>
+<body class="explorar-page">
+
+<!-- ── Navbar ──────────────────────────────────────────────── -->
+<nav class="navbar">
+  <div class="navbar-inner">
+    <a href="../index.html" class="logo">
+      <img src="../favicon.svg" alt="" class="logo-mark">
+      <span class="busca">busca</span><span class="room">Room</span>
+    </a>
+    <div class="nav-links">
+      <a href="panel.html" class="nav-text-link">
+        <svg class="icon" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        <span id="panelLinkText">Mi Panel</span>
+      </a>
+      <button id="themeToggle" class="nav-icon-btn" title="Cambiar tema">
+        <svg class="icon icon-moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        <svg class="icon icon-sun" viewBox="0 0 24 24" style="display:none"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- ── Sub-header ──────────────────────────────────────────── -->
+<header class="explorar-header">
+  <div class="explorar-header-inner">
+    <div class="profile-count">
+      <span id="profilesLeft">8</span> <span id="profilesLabel">perfiles cerca de ti</span>
+    </div>
+    <span class="filters-btn">
+      <svg class="icon icon-sm" viewBox="0 0 24 24"><line x1="4" y1="6" x2="20" y2="6"/><line x1="8" y1="12" x2="16" y2="12"/><line x1="11" y1="18" x2="13" y2="18"/></svg>
+      <span class="filters-text">Filtros</span>
+      <span class="filters-badge">2</span>
+    </span>
+  </div>
+</header>
+
+<!-- ── Contenido principal ─────────────────────────────────── -->
+<div class="explorar-content">
+
+  <div class="city-search">
+    <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+    <select id="citySelect" class="city-select">
+      <option value="Madrid" selected>Madrid</option>
+      <option value="Barcelona">Barcelona</option>
+      <option value="Valencia">Valencia</option>
+      <option value="Sevilla">Sevilla</option>
+      <option value="Zaragoza">Zaragoza</option>
+      <option value="Málaga">Málaga</option>
+      <option value="Murcia">Murcia</option>
+      <option value="Palma de Mallorca">Palma de Mallorca</option>
+      <option value="Las Palmas">Las Palmas</option>
+      <option value="Bilbao">Bilbao</option>
+      <option value="Alicante">Alicante</option>
+      <option value="Córdoba">Córdoba</option>
+    </select>
+  </div>
+
+  <div class="swipe-stack" id="swipeStack"></div>
+
+  <div class="swipe-actions">
+    <button class="btn-skip" id="btnSkip" title="Pasar">
+      <svg class="icon icon-lg" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <button class="btn-like" id="btnLike" title="Me gusta">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="white" stroke="none"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+    </button>
+    <button class="btn-skip" id="btnProfile" title="Ver perfil" style="border-color:var(--primary);color:var(--primary);">
+      <svg class="icon icon-lg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+    </button>
+  </div>
+
+  <p class="swipe-hint" id="swipeHint">Toca la tarjeta para ver el perfil completo</p>
+
+</div>
+
+<!-- ── Modal perfil ────────────────────────────────────────── -->
+<div class="profile-modal" id="profileModal">
+  <div class="profile-modal-backdrop" id="modalBackdrop"></div>
+  <div class="profile-modal-sheet" id="modalSheet">
+    <button class="modal-close-btn" id="modalClose">
+      <svg class="icon" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <div class="modal-photo-wrap">
+      <img id="modalImg" src="" alt="">
+      <div class="modal-photo-gradient"></div>
+      <div class="modal-compat-badge" id="modalCompatBadge"></div>
+    </div>
+    <div class="modal-body">
+      <h2 class="modal-name" id="modalName"></h2>
+      <div class="modal-location" id="modalLocation"></div>
+      <div class="modal-tags-row" id="modalTagsRow"></div>
+      <p class="modal-bio-text" id="modalBioText"></p>
+      <div class="modal-info-grid" id="modalInfoGrid"></div>
+      <div class="modal-actions-row">
+        <button class="modal-btn-skip" id="modalBtnSkip">
+          <svg class="icon" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          <span id="modalSkipText">Pasar</span>
+        </button>
+        <button class="modal-btn-like" id="modalBtnLike">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="white" stroke="none"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          <span id="modalLikeText">Me gusta</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── Modal Filtros ────────────────────────────────────────── -->
+<div class="profile-modal" id="filtersModal">
+  <div class="profile-modal-backdrop" id="filtersBackdrop"></div>
+  <div class="profile-modal-sheet" id="filtersSheet" style="padding:1.5rem; background:var(--card); border-top-left-radius:1.5rem; border-top-right-radius:1.5rem;">
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem;">
+      <h2 style="font-size:1.25rem; font-weight:900; color:var(--accent);" id="filtersTitleText">Filtros de búsqueda</h2>
+      <button class="modal-close-btn" id="filtersClose" style="position:static; transform:none; background:var(--gray-100); color:var(--accent);">
+        <svg class="icon" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    
+    <div style="display:flex; flex-direction:column; gap:1.5rem;">
+      <div>
+        <label style="font-size:0.75rem; font-weight:700; color:var(--muted); text-transform:uppercase; letter-spacing:0.06em; margin-bottom:0.5rem; display:block;">Presupuesto máx.</label>
+        <input type="range" min="200" max="1500" step="50" value="800" style="width:100%; accent-color:var(--secondary);" oninput="document.getElementById('budgetValue').textContent = this.value + ' €'">
+        <div style="text-align:right; font-weight:700; color:var(--secondary); font-size:0.875rem; margin-top:0.25rem;" id="budgetValue">800 €</div>
+      </div>
+      
+      <div>
+        <label style="font-size:0.75rem; font-weight:700; color:var(--muted); text-transform:uppercase; letter-spacing:0.06em; margin-bottom:0.5rem; display:block;">Vibe Check</label>
+        <div style="display:flex; flex-wrap:wrap; gap:0.5rem;">
+          <span style="padding:0.375rem 0.875rem; border-radius:9999px; font-size:0.75rem; font-weight:700; background:rgba(19,193,172,0.1); color:var(--secondary); border:1px solid rgba(19,193,172,0.3); cursor:pointer;">No fumador</span>
+          <span style="padding:0.375rem 0.875rem; border-radius:9999px; font-size:0.75rem; font-weight:700; background:rgba(19,193,172,0.1); color:var(--secondary); border:1px solid rgba(19,193,172,0.3); cursor:pointer;">Mascotas OK</span>
+          <span style="padding:0.375rem 0.875rem; border-radius:9999px; font-size:0.75rem; font-weight:700; background:var(--gray-100); color:var(--gray-500); cursor:pointer;">Estudiante</span>
+          <span style="padding:0.375rem 0.875rem; border-radius:9999px; font-size:0.75rem; font-weight:700; background:var(--gray-100); color:var(--gray-500); cursor:pointer;">Trabajador</span>
+          <span style="padding:0.375rem 0.875rem; border-radius:9999px; font-size:0.75rem; font-weight:700; background:var(--gray-100); color:var(--gray-500); cursor:pointer;">Limpio</span>
+        </div>
+      </div>
+    </div>
+    
+    <button id="applyFiltersBtn" class="btn btn-teal" style="width:100%; justify-content:center; margin-top:2rem; border-radius:1rem;">
+      Aplicar filtros
+    </button>
+  </div>
+</div>
+
+<script>
+// ─── Traducciones ──────────────────────────────────────────────
+const i18n = {
+  es: {
+    profilesNear: 'perfiles cerca de ti',
+    filters: 'Filtros',
+    cityPlaceholder: 'Buscar por ciudad…',
+    hint: 'Toca la tarjeta para ver el perfil completo',
+    noMore: '¡Has visto todos los perfiles!',
+    viewAgain: 'Ver de nuevo',
+    skip: 'Pasar',
+    like: 'Me gusta',
+    panelLink: 'Mi Panel',
+    occupation: 'Ocupación',
+    budget: 'Presupuesto',
+    schedule: 'Horario',
+    pets: 'Mascotas',
+    smoker: 'Fumador/a',
+    compatible: 'compatible'
+  },
+  en: {
+    profilesNear: 'profiles near you',
+    filters: 'Filters',
+    cityPlaceholder: 'Search by city…',
+    hint: 'Tap the card to see the full profile',
+    noMore: "You've seen all profiles!",
+    viewAgain: 'View again',
+    skip: 'Skip',
+    like: 'Like',
+    panelLink: 'My Profile',
+    occupation: 'Occupation',
+    budget: 'Budget',
+    schedule: 'Schedule',
+    pets: 'Pets',
+    smoker: 'Smoker',
+    compatible: 'match'
+  },
+  fr: {
+    profilesNear: 'profils près de vous',
+    filters: 'Filtres',
+    cityPlaceholder: 'Rechercher par ville…',
+    hint: 'Appuyez sur la carte pour voir le profil',
+    noMore: 'Vous avez vu tous les profils !',
+    viewAgain: 'Voir à nouveau',
+    skip: 'Passer',
+    like: "J'aime",
+    panelLink: 'Mon profil',
+    occupation: 'Profession',
+    budget: 'Budget',
+    schedule: 'Horaire',
+    pets: 'Animaux',
+    smoker: 'Fumeur/se',
+    compatible: 'compatible'
+  },
+  de: {
+    profilesNear: 'Profile in deiner Nähe',
+    filters: 'Filter',
+    cityPlaceholder: 'Stadt suchen…',
+    hint: 'Karte antippen für das vollständige Profil',
+    noMore: 'Du hast alle Profile gesehen!',
+    viewAgain: 'Nochmal ansehen',
+    skip: 'Überspringen',
+    like: 'Gefällt mir',
+    panelLink: 'Mein Profil',
+    occupation: 'Beruf',
+    budget: 'Budget',
+    schedule: 'Zeitplan',
+    pets: 'Haustiere',
+    smoker: 'Raucher/in',
+    compatible: 'kompatibel'
+  },
+  it: {
+    profilesNear: 'profili vicino a te',
+    filters: 'Filtri',
+    cityPlaceholder: 'Cerca per città…',
+    hint: 'Tocca la carta per vedere il profilo completo',
+    noMore: 'Hai visto tutti i profili!',
+    viewAgain: 'Vedi di nuovo',
+    skip: 'Passa',
+    like: 'Mi piace',
+    panelLink: 'Il mio profilo',
+    occupation: 'Occupazione',
+    budget: 'Budget',
+    schedule: 'Orario',
+    pets: 'Animali',
+    smoker: 'Fumatore/trice',
+    compatible: 'compatibile'
+  },
+  pt: {
+    profilesNear: 'perfis perto de ti',
+    filters: 'Filtros',
+    cityPlaceholder: 'Pesquisar por cidade…',
+    hint: 'Toca no cartão para ver o perfil completo',
+    noMore: 'Já viste todos os perfis!',
+    viewAgain: 'Ver de novo',
+    skip: 'Passar',
+    like: 'Gosto',
+    panelLink: 'O meu perfil',
+    occupation: 'Ocupação',
+    budget: 'Orçamento',
+    schedule: 'Horário',
+    pets: 'Animais',
+    smoker: 'Fumador/a',
+    compatible: 'compatível'
+  }
+};
+
+let currentLang = localStorage.getItem('buscaroom-lang') || 'es';
+
+function applyLang(lang) {
+  currentLang = lang;
+  const t = i18n[lang] || i18n.es;
+  document.getElementById('profilesLabel').textContent = t.profilesNear;
+  document.querySelector('.filters-text').textContent = t.filters;
+  document.getElementById('filtersTitleText').textContent = t.filters + ' de búsqueda';
+  document.getElementById('applyFiltersBtn').textContent = 'Aplicar';
+  document.getElementById('swipeHint').textContent = t.hint;
+  document.getElementById('panelLinkText').textContent = t.panelLink;
+}
+
+document.addEventListener('buscaroom:langchange', (e) => applyLang(e.detail.lang));
+
+// ─── Perfiles ──────────────────────────────────────────────────
+const profiles = [
+  {
+    name: "Sara García", age: 24, city: "Madrid", dist: "2 km de ti", score: 87,
+    tags: ["LIMPIO", "NOCTURNO", "POP", "TRANQUILO"],
+    img: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=600&q=80",
+    bio: "Estudiante de diseño gráfico en la Complutense. Me encanta la música en directo, los mercadillos y los fines de semana tranquilos en casa con una buena película.",
+    occupation: "Estudiante", budget: "500–700 €/mes", schedule: "Nocturna 🌙", pets: "Sin mascotas", smoker: "No fumadora"
+  },
+  {
+    name: "Juan Torres", age: 26, city: "Madrid", dist: "4 km de ti", score: 82,
+    tags: ["ESTUDIANTE", "DEPORTISTA", "MADRUGADOR"],
+    img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=80",
+    bio: "Ingeniero de software en remoto. Salgo a correr cada mañana y me gusta tener el piso ordenado. Busco un ambiente tranquilo para trabajar desde casa.",
+    occupation: "Desarrollador", budget: "600–900 €/mes", schedule: "Madrugador ☀️", pets: "Sin mascotas", smoker: "No fumador"
+  },
+  {
+    name: "María López", age: 23, city: "Madrid", dist: "1 km de ti", score: 91,
+    tags: ["VEGANA", "YOGA", "TRANQUILA", "GATOS"],
+    img: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=600&q=80",
+    bio: "Nutricionista y amante del yoga. Tengo una gata llamada Luna. Cocino mucho en casa y siempre mantengo los espacios comunes impecables.",
+    occupation: "Nutricionista", budget: "550–750 €/mes", schedule: "Flexible 🌅", pets: "1 gata (Luna)", smoker: "No fumadora"
+  },
+  {
+    name: "Carlos Ruiz", age: 28, city: "Madrid", dist: "3 km de ti", score: 78,
+    tags: ["GAMER", "NOCTURNO", "ROCK", "SOCIAL"],
+    img: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=600&q=80",
+    bio: "Trabajo en marketing digital. Me gusta el rock en directo y los videojuegos los fines de semana. Soy sociable y organizo cenas con amigos de vez en cuando.",
+    occupation: "Marketing", budget: "600–850 €/mes", schedule: "Nocturno 🌙", pets: "Sin mascotas", smoker: "Fuera de casa"
+  },
+  {
+    name: "Laura Moreno", age: 25, city: "Madrid", dist: "5 km de ti", score: 85,
+    tags: ["DEPORTISTA", "LIMPIA", "JAZZ", "CAFÉ"],
+    img: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=600&q=80",
+    bio: "Arquitecta. Paso los fines de semana en el estudio o en exposiciones. Me encanta el jazz, los brunchs y el café de especialidad. Muy limpia y organizada.",
+    occupation: "Arquitecta", budget: "700–1000 €/mes", schedule: "Madrugadora ☀️", pets: "Sin mascotas", smoker: "No fumadora"
+  },
+  {
+    name: "Alejandro Vega", age: 27, city: "Madrid", dist: "4 km de ti", score: 80,
+    tags: ["CHEF", "SOCIAL", "INDIE", "LIMPIO"],
+    img: "https://images.unsplash.com/photo-1463453091185-61582044d556?auto=format&fit=crop&w=600&q=80",
+    bio: "Chef en un restaurante de Malasaña. Me gusta compartir la cena con el piso los viernes. Solo llevo trabajo a casa en forma de nueva receta.",
+    occupation: "Chef", budget: "650–900 €/mes", schedule: "Nocturno 🌙", pets: "Sin mascotas", smoker: "No fumador"
+  },
+  {
+    name: "Sofía Reyes", age: 22, city: "Madrid", dist: "800 m de ti", score: 93,
+    tags: ["ESTUDIANTE", "TRANQUILA", "LIBROS", "VEGANA"],
+    img: "https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?auto=format&fit=crop&w=600&q=80",
+    bio: "Estudiante de literatura comparada. Paso las tardes leyendo o en la biblioteca. Muy tranquila, no hago fiestas en casa y me llevo bien con todo el mundo.",
+    occupation: "Estudiante", budget: "400–600 €/mes", schedule: "Flexible 🌅", pets: "Sin mascotas", smoker: "No fumadora"
+  },
+  {
+    name: "Diego Martín", age: 29, city: "Madrid", dist: "2 km de ti", score: 76,
+    tags: ["MADRUGADOR", "DEPORTE", "JAZZ", "PERROS"],
+    img: "https://images.unsplash.com/photo-1527980965255-d3b416303d12?auto=format&fit=crop&w=600&q=80",
+    bio: "Fisioterapeuta. Salgo a correr antes del trabajo y vuelvo tranquilo. Tengo un perro pequeño muy bien educado. Los fines de semana me gusta el jazz y leer.",
+    occupation: "Fisioterapeuta", budget: "600–900 €/mes", schedule: "Madrugador ☀️", pets: "1 perro (pequeño)", smoker: "No fumador"
+  }
+];
+
+// ─── Estado ────────────────────────────────────────────────────
+let currentIndex = 0;
+let isAnimating = false;
+
+const stack = document.getElementById('swipeStack');
+const profilesLeftEl = document.getElementById('profilesLeft');
+const btnSkip = document.getElementById('btnSkip');
+const btnLike = document.getElementById('btnLike');
+const btnProfile = document.getElementById('btnProfile');
+
+// ─── Tarjetas ──────────────────────────────────────────────────
+function createCardHTML(profile, isFront) {
+  return `
+    <div class="swipe-card ${isFront ? 'swipe-card-front' : 'swipe-card-back'}">
+      <img src="${profile.img}" alt="${profile.name}" loading="lazy">
+      <div class="swipe-card-overlay"></div>
+      <div class="swipe-card-info">
+        <div class="swipe-card-name">${profile.name}, ${profile.age}</div>
+        <div class="swipe-card-city">${profile.city}${profile.dist ? ' · ' + profile.dist : ''}</div>
+        ${isFront ? `
+        <div class="swipe-score">
+          <svg class="icon icon-sm" viewBox="0 0 24 24" fill="currentColor"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          ${profile.score}% ${i18n[currentLang].compatible}
+        </div>
+        <div class="swipe-tags">
+          ${profile.tags.map(t => `<span class="swipe-tag">${t}</span>`).join('')}
+        </div>` : ''}
+      </div>
+    </div>
+  `;
+}
+
+function setButtonsDisabled(disabled) {
+  btnSkip.disabled = disabled;
+  btnLike.disabled = disabled;
+  btnProfile.disabled = disabled;
+}
+
+function renderCards() {
+  stack.innerHTML = '';
+
+  if (currentIndex >= profiles.length) {
+    const t = i18n[currentLang];
+    stack.innerHTML = `
+      <div class="no-more-cards">
+        <svg class="icon icon-xl" viewBox="0 0 24 24" fill="none" stroke="var(--secondary)" stroke-width="1.5">
+          <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+        </svg>
+        <p>${t.noMore}</p>
+        <button class="btn btn-teal" onclick="resetProfiles()">${t.viewAgain}</button>
+      </div>
+    `;
+    setButtonsDisabled(true);
+    return;
+  }
+
+  setButtonsDisabled(false);
+
+  if (currentIndex + 1 < profiles.length) {
+    stack.insertAdjacentHTML('beforeend', createCardHTML(profiles[currentIndex + 1], false));
+  }
+  stack.insertAdjacentHTML('beforeend', createCardHTML(profiles[currentIndex], true));
+  profilesLeftEl.textContent = profiles.length - currentIndex;
+
+  const frontCard = stack.querySelector('.swipe-card-front');
+  if (frontCard) {
+    frontCard.addEventListener('click', () => {
+      if (!isAnimating) openModal(currentIndex);
+    });
+  }
+}
+
+// ─── Swipe ─────────────────────────────────────────────────────
+function swipe(direction) {
+  if (isAnimating) return;
+  const frontCard = stack.querySelector('.swipe-card-front');
+  if (!frontCard) return;
+
+  isAnimating = true;
+  const tx = direction === 'right' ? '200%' : '-200%';
+  const rot = direction === 'right' ? '20deg' : '-20deg';
+  frontCard.style.transition = 'transform 0.4s ease-out, opacity 0.4s ease-out';
+  frontCard.style.transform = `translateX(${tx}) rotate(${rot})`;
+  frontCard.style.opacity = '0';
+
+  setTimeout(() => {
+    currentIndex++;
+    renderCards();
+    isAnimating = false;
+  }, 400);
+}
+
+function resetProfiles() {
+  currentIndex = 0;
+  renderCards();
+}
+
+// ─── Modal ─────────────────────────────────────────────────────
+function openModal(index) {
+  const p = profiles[index];
+  const t = i18n[currentLang];
+
+  document.getElementById('modalImg').src = p.img;
+  document.getElementById('modalImg').alt = p.name;
+  document.getElementById('modalCompatBadge').innerHTML = `
+    <svg class="icon icon-sm" viewBox="0 0 24 24" fill="currentColor"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+    ${p.score}% ${t.compatible}
+  `;
+  document.getElementById('modalName').textContent = `${p.name}, ${p.age}`;
+  document.getElementById('modalLocation').textContent = `${p.city}${p.dist ? ' · ' + p.dist : ''}`;
+  document.getElementById('modalTagsRow').innerHTML = p.tags.map(tag => `<span class="modal-tag">${tag}</span>`).join('');
+  document.getElementById('modalBioText').textContent = p.bio;
+  document.getElementById('modalInfoGrid').innerHTML = `
+    <div class="modal-info-item">
+      <div class="modal-info-label">${t.occupation}</div>
+      <div class="modal-info-value">${p.occupation}</div>
+    </div>
+    <div class="modal-info-item">
+      <div class="modal-info-label">${t.budget}</div>
+      <div class="modal-info-value">${p.budget}</div>
+    </div>
+    <div class="modal-info-item">
+      <div class="modal-info-label">${t.schedule}</div>
+      <div class="modal-info-value">${p.schedule}</div>
+    </div>
+    <div class="modal-info-item">
+      <div class="modal-info-label">${t.pets}</div>
+      <div class="modal-info-value">${p.pets}</div>
+    </div>
+    <div class="modal-info-item">
+      <div class="modal-info-label">${t.smoker}</div>
+      <div class="modal-info-value">${p.smoker}</div>
+    </div>
+  `;
+  document.getElementById('modalSkipText').textContent = t.skip;
+  document.getElementById('modalLikeText').textContent = t.like;
+
+  document.getElementById('profileModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  document.getElementById('profileModal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.getElementById('modalClose').addEventListener('click', closeModal);
+document.getElementById('modalBackdrop').addEventListener('click', closeModal);
+document.getElementById('modalBtnSkip').addEventListener('click', () => { closeModal(); setTimeout(() => swipe('left'), 150); });
+document.getElementById('modalBtnLike').addEventListener('click', () => { closeModal(); setTimeout(() => swipe('right'), 150); });
+
+// ─── Botones swipe ─────────────────────────────────────────────
+btnSkip.addEventListener('click', () => swipe('left'));
+btnLike.addEventListener('click', () => swipe('right'));
+btnProfile.addEventListener('click', () => { if (currentIndex < profiles.length) openModal(currentIndex); });
+
+document.querySelector('.filters-btn').addEventListener('click', () => {
+  document.getElementById('filtersModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+});
+
+function closeFiltersModal() {
+  document.getElementById('filtersModal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.getElementById('filtersClose').addEventListener('click', closeFiltersModal);
+document.getElementById('filtersBackdrop').addEventListener('click', closeFiltersModal);
+document.getElementById('applyFiltersBtn').addEventListener('click', closeFiltersModal);
+
+// Toggle pills en el modal de filtros
+document.querySelectorAll('#filtersSheet span').forEach(pill => {
+  pill.addEventListener('click', () => {
+    const isActive = pill.style.background.includes('rgba(19, 193, 172');
+    if (isActive) {
+      pill.style.background = 'var(--gray-100)';
+      pill.style.color = 'var(--gray-500)';
+      pill.style.border = 'none';
+    } else {
+      pill.style.background = 'rgba(19,193,172,0.1)';
+      pill.style.color = 'var(--secondary)';
+      pill.style.border = '1px solid rgba(19,193,172,0.3)';
+    }
+  });
+});
+
+// ─── Init ──────────────────────────────────────────────────────
+applyLang(currentLang);
+renderCards();
+</script>
+<script src="../js/shared.js"></script>
+</body>
+</html>

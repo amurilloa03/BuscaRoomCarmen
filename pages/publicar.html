@@ -1,0 +1,173 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#13c1ac">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <title>Publicar anuncio — buscaRoom</title>
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../css/publicar.css">
+</head>
+<body class="publicar-page">
+
+<header class="publicar-header">
+  <div class="publicar-header-inner">
+    <a href="panel.html" class="pub-back-btn" title="Volver">
+      <svg class="icon icon-sm" viewBox="0 0 24 24"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+    </a>
+    <div class="pub-header-title">
+      <svg class="icon icon-sm" viewBox="0 0 24 24" style="color:var(--secondary)"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      Publicar anuncio
+    </div>
+    <span class="pub-step-badge">2 / 3</span>
+  </div>
+</header>
+
+<div class="progress-bar">
+  <div class="progress-fill" style="width:66%;"></div>
+</div>
+
+<div class="publicar-content">
+
+  <div class="publicar-card">
+    <h2 class="step-title">Fotos del espacio</h2>
+    <p class="step-desc">La primera foto será la portada de tu anuncio.</p>
+
+    <div class="photo-grid">
+      <div class="photo-slot cover">
+        <img src="https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?auto=format&fit=crop&w=300&q=80" alt="Portada">
+        <span class="cover-label">PORTADA</span>
+      </div>
+      <div class="photo-slot">
+        <img src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=300&q=80" alt="foto 2" loading="lazy">
+      </div>
+      <div class="photo-slot">
+        <img src="https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&w=300&q=80" alt="foto 3" loading="lazy">
+      </div>
+      <div class="photo-add">
+        <svg class="icon" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        Añadir
+      </div>
+      <div class="photo-add">
+        <svg class="icon" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        Añadir
+      </div>
+      <div class="photo-add">
+        <svg class="icon" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        Añadir
+      </div>
+    </div>
+  </div>
+
+  <div class="publicar-card">
+    <h2 class="step-title">Información básica</h2>
+    <p class="step-desc">Cuéntanos los detalles de tu espacio.</p>
+
+    <div class="pub-field">
+      <label class="pub-label">Tipo de espacio</label>
+      <div class="room-type-btns">
+        <button class="room-type-btn active">Habitación</button>
+        <button class="room-type-btn">Estudio</button>
+        <button class="room-type-btn">Piso entero</button>
+      </div>
+    </div>
+
+    <div class="pub-field">
+      <label class="pub-label">Título del anuncio</label>
+      <input class="pub-input" type="text" placeholder="Ej: Habitación luminosa en el centro" value="Habitación luminosa en Malasaña">
+    </div>
+
+    <div class="pub-field">
+      <label class="pub-label">Ubicación</label>
+      <input class="pub-input" type="text" placeholder="Calle, barrio o ciudad…" value="Malasaña, Madrid">
+    </div>
+
+    <div class="pub-field">
+      <label class="pub-label">Precio mensual</label>
+      <div class="price-wrapper">
+        <input class="pub-input" type="number" placeholder="0" value="550" style="padding-right:2.5rem;">
+        <span class="price-euro">€</span>
+      </div>
+    </div>
+
+    <div class="pub-field">
+      <label class="pub-label">Disponible desde</label>
+      <input class="pub-input" type="date" value="2026-07-01">
+    </div>
+  </div>
+
+  <div class="publicar-card">
+    <h2 class="step-title">Características</h2>
+    <p class="step-desc">Selecciona los servicios incluidos.</p>
+
+    <div class="feature-toggles">
+      <div class="feature-toggle active" onclick="this.classList.toggle('active')">
+        <span class="feature-toggle-label">
+          <svg class="icon icon-sm" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          Gastos incluidos
+        </span>
+        <div class="feature-check">
+          <svg class="icon icon-sm" viewBox="0 0 24 24" stroke="white" fill="none"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+      </div>
+      <div class="feature-toggle active" onclick="this.classList.toggle('active')">
+        <span class="feature-toggle-label">
+          <svg class="icon icon-sm" viewBox="0 0 24 24"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg>
+          WiFi incluido
+        </span>
+        <div class="feature-check">
+          <svg class="icon icon-sm" viewBox="0 0 24 24" stroke="white" fill="none"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+      </div>
+      <div class="feature-toggle" onclick="this.classList.toggle('active')">
+        <span class="feature-toggle-label">
+          <svg class="icon icon-sm" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+          Amueblado
+        </span>
+        <div class="feature-check" style="border-color:var(--gray-300);"></div>
+      </div>
+    </div>
+
+    <div class="pub-field">
+      <label class="pub-label">Descripción</label>
+      <textarea class="pub-input" rows="4" style="resize:vertical;">Habitación amplia y luminosa en el corazón de Malasaña. Piso compartido con 2 personas, ambiente tranquilo y respetuoso. A 5 minutos del metro Tribunal. Gastos incluidos en el precio.</textarea>
+    </div>
+  </div>
+
+  <div class="preview-card">
+    <img class="preview-thumb" src="https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?auto=format&fit=crop&w=100&q=80" alt="preview">
+    <div>
+      <div class="preview-title">Habitación luminosa en Malasaña</div>
+      <div class="preview-meta">Madrid · 550 €/mes · 3 fotos</div>
+    </div>
+  </div>
+
+  <div class="btn-row" style="margin-top: 1rem;">
+    <a href="panel.html" class="btn-back-pub">
+      <svg class="icon icon-sm" viewBox="0 0 24 24"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+      Anterior
+    </a>
+    <button class="btn-publish-pub" onclick="alert('¡Anuncio publicado con éxito! Te redirigimos al panel.'); window.location.href='panel.html'">
+      <svg class="icon icon-sm" viewBox="0 0 24 24" style="display:inline;vertical-align:middle;margin-right:0.375rem;" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+      Publicar anuncio
+    </button>
+  </div>
+
+</div>
+
+<script>
+  // Selector de tipo de espacio
+  const roomTypeBtns = document.querySelectorAll('.room-type-btn');
+  roomTypeBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      roomTypeBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    });
+  });
+</script>
+<script src="../js/shared.js"></script>
+</body>
+</html>
+
+

@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#13c1ac">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <title>Pisos disponibles — buscaRoom</title>
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../css/pisos.css">
+</head>
+<body class="pisos-page">
+
+<nav class="navbar">
+  <div class="navbar-inner">
+    <a href="../index.html" class="logo"><img src="../favicon.svg" alt="" class="logo-mark"><span class="busca">busca</span><span class="room">Room</span></a>
+    <div class="nav-links">
+      <!-- lang dropdown inyectado por shared.js -->
+      <a href="pisos.html" class="nav-text-link hide-mobile" style="color:var(--secondary);">
+        <svg class="icon" viewBox="0 0 24 24"><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18"/><path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"/><path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"/></svg>
+        <span id="navRoomsText">Ver pisos</span>
+      </a>
+      <a href="explorar.html" class="nav-text-link hide-mobile">
+        <svg class="icon" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <span id="navExploreText">Explorar</span>
+      </a>
+      <a href="panel.html" class="nav-text-link">
+        <svg class="icon" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        <span id="panelLinkText">Mi Panel</span>
+      </a>
+      <button id="themeToggle" class="nav-icon-btn" title="Cambiar tema">
+        <svg class="icon icon-moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        <svg class="icon icon-sun" viewBox="0 0 24 24" style="display:none"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<div class="pisos-hero">
+  <div class="container">
+    <h1 id="heroTitle">Pisos y habitaciones disponibles</h1>
+    <p id="heroSubtitle">Encuentra el espacio perfecto para ti en toda España</p>
+
+    <div class="search-bar">
+      <div class="search-input-wrap">
+        <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <select id="searchInput" class="search-select-city" style="width:100%; padding:0.875rem 1rem 0.875rem 2.75rem; border:none; border-radius:0.875rem; font-size:0.9rem; font-family:inherit; background:white; color:var(--accent); outline:none; appearance:none; cursor:pointer;">
+          <option value="" disabled selected>Ciudad, barrio o dirección…</option>
+          <option value="Madrid">Madrid</option>
+          <option value="Barcelona">Barcelona</option>
+          <option value="Valencia">Valencia</option>
+          <option value="Sevilla">Sevilla</option>
+          <option value="Zaragoza">Zaragoza</option>
+          <option value="Málaga">Málaga</option>
+          <option value="Murcia">Murcia</option>
+          <option value="Palma de Mallorca">Palma de Mallorca</option>
+          <option value="Las Palmas">Las Palmas</option>
+          <option value="Bilbao">Bilbao</option>
+          <option value="Alicante">Alicante</option>
+          <option value="Córdoba">Córdoba</option>
+        </select>
+        <!-- Flecha personalizada para este select -->
+        <svg style="position:absolute; right:1rem; top:50%; transform:translateY(-50%); width:0.75rem; height:0.75rem; stroke:var(--accent); fill:none; pointer-events:none; stroke-width:2; stroke-linecap:round; stroke-linejoin:round;" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <select class="search-select">
+        <option>Cualquier precio</option>
+        <option>Hasta 400 €/mes</option>
+        <option selected>Hasta 600 €/mes</option>
+        <option>Hasta 800 €/mes</option>
+        <option>Más de 800 €/mes</option>
+      </select>
+      <select class="search-select">
+        <option>Cualquier tipo</option>
+        <option>Habitación</option>
+        <option>Estudio</option>
+        <option>Piso entero</option>
+      </select>
+      <button class="search-btn">
+        <svg style="width:1rem;height:1rem;display:inline;vertical-align:middle;margin-right:0.375rem;stroke:white;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <span id="searchBtnText">Buscar</span>
+      </button>
+    </div>
+
+    <div class="filter-chips">
+      <span class="chip active" data-pisoi18n="filterAll">Todos</span>
+      <span class="chip">Madrid</span>
+      <span class="chip">Barcelona</span>
+      <span class="chip">Valencia</span>
+      <span class="chip">Sevilla</span>
+      <span class="chip" data-pisoi18n="filterBills">Gastos incluidos</span>
+      <span class="chip">WiFi</span>
+      <span class="chip" data-pisoi18n="filterFurnished">Amueblado</span>
+    </div>
+  </div>
+</div>
+
+<div class="pisos-main">
+  <div class="container">
+
+    <div class="map-placeholder" style="padding:0;overflow:hidden;">
+      <iframe
+        src="https://www.openstreetmap.org/export/embed.html?bbox=-9.5%2C36.0%2C4.5%2C43.8&amp;layer=mapnik"
+        style="width:100%;height:320px;border-radius:1rem;border:0;display:block;"
+        allowfullscreen loading="lazy" title="Mapa España"></iframe>
+    </div>
+
+    <div class="results-header">
+      <p class="results-count"><span>9</span> <span id="resultsLabel">alojamientos encontrados</span></p>
+      <select class="sort-select">
+        <option>Más recientes</option>
+        <option>Precio: menor a mayor</option>
+        <option>Precio: mayor a menor</option>
+      </select>
+    </div>
+
+    <div class="pisos-grid">
+
+      <a href="piso-detalle.html" class="piso-card">
+        <div class="piso-card-img">
+          <img src="https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?auto=format&fit=crop&w=600&q=80" alt="Malasaña" loading="lazy">
+          <span class="piso-type-badge">Habitación</span>
+          <span class="piso-badge">550 €/mes</span>
+        </div>
+        <div class="piso-card-body">
+          <div class="piso-title">Habitación luminosa en Malasaña</div>
+          <div class="piso-meta">
+            <span class="piso-meta-item"><svg class="icon icon-sm" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Malasaña, Madrid</span>
+            <span class="piso-meta-item"><svg class="icon icon-sm" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>Desde 01/07/2026</span>
+          </div>
+          <div class="piso-features">
+            <span class="piso-feature-tag green">Gastos incl.</span>
+            <span class="piso-feature-tag green">WiFi</span>
+            <span class="piso-feature-tag">Amueblado</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="piso-detalle.html" class="piso-card">
+        <div class="piso-card-img">
+          <img src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=600&q=80" alt="Eixample" loading="lazy">
+          <span class="piso-type-badge">Piso entero</span>
+          <span class="piso-badge">650 €/mes</span>
+        </div>
+        <div class="piso-card-body">
+          <div class="piso-title">Piso céntrico con terraza en Eixample</div>
+          <div class="piso-meta">
+            <span class="piso-meta-item"><svg class="icon icon-sm" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Eixample, Barcelona</span>
+            <span class="piso-meta-item"><svg class="icon icon-sm" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>Desde 15/06/2026</span>
+          </div>
+          <div class="piso-features">
+            <span class="piso-feature-tag green">WiFi</span>
+            <span class="piso-feature-tag">Amueblado</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="piso-detalle.html" class="piso-card">
+        <div class="piso-card-img">
+          <img src="https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&w=600&q=80" alt="Valencia" loading="lazy">
+          <span class="piso-type-badge">Estudio</span>
+          <span class="piso-badge">450 €/mes</span>
+        </div>
+        <div class="piso-card-body">
+          <div class="piso-title">Estudio moderno cerca de la playa</div>
+          <div class="piso-meta">
+            <span class="piso-meta-item"><svg class="icon icon-sm" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Ruzafa, Valencia</span>
+            <span class="piso-meta-item"><svg class="icon icon-sm" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>Desde 01/06/2026</span>
+          </div>
+          <div class="piso-features">
+            <span class="piso-feature-tag green">Gastos incl.</span>
+            <span class="piso-feature-tag green">WiFi</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="piso-detalle.html" class="piso-card">
+        <div class="piso-card-img">
+          <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=600&q=80" alt="Gracia" loading="lazy">
+          <span class="piso-type-badge">Habitación</span>
+          <span class="piso-badge">480 €/mes</span>
+        </div>
+        <div class="piso-card-body">
+          <div class="piso-title">Habitación acogedora en Gràcia con balcón</div>
+          <div class="piso-meta">
+            <span class="piso-meta-item"><svg class="icon icon-sm" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Gràcia, Barcelona</span>
+            <span class="piso-meta-item"><svg class="icon icon-sm" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>Desde 20/06/2026</span>
+          </div>
+          <div class="piso-features">
+            <span class="piso-feature-tag green">WiFi</span>
+            <span class="piso-feature-tag">Amueblado</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="piso-detalle.html" class="piso-card">
+        <div class="piso-card-img">
+          <img src="https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=600&q=80" alt="Salamanca" loading="lazy">
+          <span class="piso-type-badge">Habitación</span>
+          <span class="piso-badge">720 €/mes</span>
+        </div>
+        <div class="piso-card-body">
+          <div class="piso-title">Ático con vistas al Retiro, barrio Salamanca</div>
+          <div class="piso-meta">
+            <span class="piso-meta-item"><svg class="icon icon-sm" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Salamanca, Madrid</span>
+            <span class="piso-meta-item"><svg class="icon icon-sm" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>Disponible ya</span>
+          </div>
+          <div class="piso-features">
+            <span class="piso-feature-tag green">Gastos incl.</span>
+            <span class="piso-feature-tag green">WiFi</span>
+            <span class="piso-feature-tag">Amueblado</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="piso-detalle.html" class="piso-card">
+        <div class="piso-card-img">
+          <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=600&q=80" alt="Chueca" loading="lazy">
+          <span class="piso-type-badge">Habitación</span>
+          <span class="piso-badge">590 €/mes</span>
+        </div>
+        <div class="piso-card-body">
+          <div class="piso-title">Habitación en piso reformado en Chueca</div>
+          <div class="piso-meta">
+            <span class="piso-meta-item"><svg class="icon icon-sm" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Chueca, Madrid</span>
+            <span class="piso-meta-item"><svg class="icon icon-sm" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>Desde 01/08/2026</span>
+          </div>
+          <div class="piso-features">
+            <span class="piso-feature-tag green">WiFi</span>
+            <span class="piso-feature-tag">Amueblado</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="piso-detalle.html" class="piso-card">
+        <div class="piso-card-img">
+          <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=600&q=80" alt="Born" loading="lazy">
+          <span class="piso-type-badge">Piso entero</span>
+          <span class="piso-badge">950 €/mes</span>
+        </div>
+        <div class="piso-card-body">
+          <div class="piso-title">Piso completo de diseño en el Born</div>
+          <div class="piso-meta">
+            <span class="piso-meta-item"><svg class="icon icon-sm" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>El Born, Barcelona</span>
+            <span class="piso-meta-item"><svg class="icon icon-sm" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>Disponible ya</span>
+          </div>
+          <div class="piso-features">
+            <span class="piso-feature-tag green">Gastos incl.</span>
+            <span class="piso-feature-tag green">WiFi</span>
+            <span class="piso-feature-tag">Amueblado</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="piso-detalle.html" class="piso-card">
+        <div class="piso-card-img">
+          <img src="https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&w=600&q=80" alt="Ruzafa" loading="lazy">
+          <span class="piso-type-badge">Habitación</span>
+          <span class="piso-badge">420 €/mes</span>
+        </div>
+        <div class="piso-card-body">
+          <div class="piso-title">Habitación tranquila en el corazón de Ruzafa</div>
+          <div class="piso-meta">
+            <span class="piso-meta-item"><svg class="icon icon-sm" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Ruzafa, Valencia</span>
+            <span class="piso-meta-item"><svg class="icon icon-sm" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>Desde 10/06/2026</span>
+          </div>
+          <div class="piso-features">
+            <span class="piso-feature-tag green">Gastos incl.</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="piso-detalle.html" class="piso-card">
+        <div class="piso-card-img">
+          <img src="https://images.unsplash.com/photo-1536376072261-38c75010e6c9?auto=format&fit=crop&w=600&q=80" alt="Sevilla" loading="lazy">
+          <span class="piso-type-badge">Estudio</span>
+          <span class="piso-badge">380 €/mes</span>
+        </div>
+        <div class="piso-card-body">
+          <div class="piso-title">Estudio luminoso en el centro histórico de Sevilla</div>
+          <div class="piso-meta">
+            <span class="piso-meta-item"><svg class="icon icon-sm" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Centro, Sevilla</span>
+            <span class="piso-meta-item"><svg class="icon icon-sm" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>Desde 01/06/2026</span>
+          </div>
+          <div class="piso-features">
+            <span class="piso-feature-tag green">WiFi</span>
+            <span class="piso-feature-tag">Amueblado</span>
+          </div>
+        </div>
+      </a>
+
+    </div>
+
+    <div class="pagination">
+      <button class="page-btn"><svg class="icon icon-sm" viewBox="0 0 24 24"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg></button>
+      <button class="page-btn active">1</button>
+      <button class="page-btn">2</button>
+      <button class="page-btn">3</button>
+      <button class="page-btn"><svg class="icon icon-sm" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
+    </div>
+
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-col-title">Cómo funciona</div>
+        <ul class="footer-links">
+          <li><a href="pisos.html">Buscar habitación</a></li>
+          <li><a href="publicar.html">Publicar piso</a></li>
+          <li><a href="#">Seguridad</a></li>
+          <li><a href="explorar.html">Vibe Check</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Compañía</div>
+        <ul class="footer-links">
+          <li><a href="#">Sobre nosotros</a></li>
+          <li><a href="#">Prensa</a></li>
+          <li><a href="#">Empleo</a></li>
+          <li><a href="#">Contacto</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Legal</div>
+        <ul class="footer-links">
+          <li><a href="#">Condiciones del servicio</a></li>
+          <li><a href="#">Política de privacidad</a></li>
+          <li><a href="#">Política de cookies</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Descubre</div>
+        <ul class="footer-links">
+          <li><a href="pisos.html">Pisos en Madrid</a></li>
+          <li><a href="pisos.html">Pisos en Barcelona</a></li>
+          <li><a href="pisos.html">Pisos en Valencia</a></li>
+          <li><a href="explorar.html">Compañeros</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copyright">buscaRoom, 2026 © Todos los derechos reservados.</p>
+      <div class="footer-socials">
+        <a href="#">Facebook</a>
+        <a href="#">Instagram</a>
+        <a href="#">Twitter</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Filter chips interactivity
+  const chips = document.querySelectorAll('.chip');
+  chips.forEach(chip => {
+    chip.addEventListener('click', () => {
+      if (chip.textContent === 'Todos') {
+        chips.forEach(c => c.classList.remove('active'));
+        chip.classList.add('active');
+      } else {
+        document.querySelector('.chip').classList.remove('active');
+        chip.classList.toggle('active');
+      }
+    });
+  });
+
+  // Search button
+  const searchBtn = document.querySelector('.search-btn');
+  if (searchBtn) {
+    searchBtn.addEventListener('click', () => {
+      const input = document.querySelector('.search-input-wrap input').value;
+      alert(`Buscando: ${input ? input : 'Todas las ubicaciones'}`);
+    });
+  }
+
+  // Pagination interactivity
+  const pageBtns = document.querySelectorAll('.page-btn');
+  pageBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      if(btn.textContent.trim() !== '') {
+        pageBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    });
+  });
+</script>
+<script>
+// ─── Traducciones página Pisos ─────────────────────────────────
+const pisosI18n = {
+  es: {
+    heroTitle: 'Pisos y habitaciones disponibles',
+    heroSubtitle: 'Encuentra el espacio perfecto para ti en toda España',
+    searchPlaceholder: 'Ciudad, barrio o dirección…',
+    searchBtn: 'Buscar',
+    filterAll: 'Todos',
+    filterBills: 'Gastos incluidos',
+    filterFurnished: 'Amueblado',
+    resultsLabel: 'alojamientos encontrados',
+    panelLink: 'Mi Panel',
+    navRooms: 'Ver pisos',
+    navExplore: 'Explorar',
+  },
+  en: {
+    heroTitle: 'Available rooms and apartments',
+    heroSubtitle: 'Find the perfect space for you across Spain',
+    searchPlaceholder: 'City, neighborhood or address…',
+    searchBtn: 'Search',
+    filterAll: 'All',
+    filterBills: 'Bills included',
+    filterFurnished: 'Furnished',
+    resultsLabel: 'listings found',
+    panelLink: 'My Profile',
+    navRooms: 'Browse rooms',
+    navExplore: 'Explore',
+  },
+  fr: {
+    heroTitle: 'Appartements et chambres disponibles',
+    heroSubtitle: "Trouvez l'espace parfait pour vous en Espagne",
+    searchPlaceholder: 'Ville, quartier ou adresse…',
+    searchBtn: 'Rechercher',
+    filterAll: 'Tous',
+    filterBills: 'Charges comprises',
+    filterFurnished: 'Meublé',
+    resultsLabel: 'logements trouvés',
+    panelLink: 'Mon profil',
+    navRooms: 'Voir logements',
+    navExplore: 'Explorer',
+  },
+  de: {
+    heroTitle: 'Verfügbare Wohnungen und Zimmer',
+    heroSubtitle: 'Finde den perfekten Raum für dich in Spanien',
+    searchPlaceholder: 'Stadt, Viertel oder Adresse…',
+    searchBtn: 'Suchen',
+    filterAll: 'Alle',
+    filterBills: 'Nebenkosten inkl.',
+    filterFurnished: 'Möbliert',
+    resultsLabel: 'Inserate gefunden',
+    panelLink: 'Mein Profil',
+    navRooms: 'Wohnungen',
+    navExplore: 'Entdecken',
+  },
+  it: {
+    heroTitle: 'Appartamenti e camere disponibili',
+    heroSubtitle: 'Trova lo spazio perfetto per te in Spagna',
+    searchPlaceholder: 'Città, quartiere o indirizzo…',
+    searchBtn: 'Cerca',
+    filterAll: 'Tutti',
+    filterBills: 'Spese incluse',
+    filterFurnished: 'Arredato',
+    resultsLabel: 'annunci trovati',
+    panelLink: 'Il mio profilo',
+    navRooms: 'Vedi appartamenti',
+    navExplore: 'Esplora',
+  },
+  pt: {
+    heroTitle: 'Apartamentos e quartos disponíveis',
+    heroSubtitle: 'Encontra o espaço perfeito para ti em Espanha',
+    searchPlaceholder: 'Cidade, bairro ou endereço…',
+    searchBtn: 'Pesquisar',
+    filterAll: 'Todos',
+    filterBills: 'Despesas incluídas',
+    filterFurnished: 'Mobilado',
+    resultsLabel: 'alojamentos encontrados',
+    panelLink: 'O meu perfil',
+    navRooms: 'Ver apartamentos',
+    navExplore: 'Explorar',
+  },
+};
+
+function applyPisosLang(lang) {
+  const t = pisosI18n[lang] || pisosI18n.es;
+  const el = (id) => document.getElementById(id);
+  if (el('heroTitle'))     el('heroTitle').textContent     = t.heroTitle;
+  if (el('heroSubtitle'))  el('heroSubtitle').textContent  = t.heroSubtitle;
+  if (el('searchInput'))   el('searchInput').placeholder   = t.searchPlaceholder;
+  if (el('searchBtnText')) el('searchBtnText').textContent = t.searchBtn;
+  if (el('resultsLabel'))  el('resultsLabel').textContent  = t.resultsLabel;
+  if (el('panelLinkText')) el('panelLinkText').textContent = t.panelLink;
+  if (el('navRoomsText'))  el('navRoomsText').textContent  = t.navRooms;
+  if (el('navExploreText'))el('navExploreText').textContent= t.navExplore;
+  document.querySelectorAll('[data-pisoi18n]').forEach(node => {
+    const key = node.dataset.pisoi18n;
+    if (t[key]) node.textContent = t[key];
+  });
+}
+
+// Aplicar idioma guardado al cargar
+applyPisosLang(localStorage.getItem('buscaroom-lang') || 'es');
+
+// Escuchar cambios de idioma desde shared.js
+document.addEventListener('buscaroom:langchange', (e) => applyPisosLang(e.detail.lang));
+
+// Lógica real de filtrado y paginación
+const allCards = Array.from(document.querySelectorAll('.piso-card'));
+let filteredCards = [...allCards];
+const ITEMS_PER_PAGE = 4;
+let currentPage = 1;
+
+function renderPage(page) {
+  currentPage = page;
+  
+  // Ocultar todas
+  allCards.forEach(c => c.style.display = 'none');
+  
+  // Mostrar las de esta página
+  const start = (page - 1) * ITEMS_PER_PAGE;
+  const end = start + ITEMS_PER_PAGE;
+  const cardsToShow = filteredCards.slice(start, end);
+  
+  cardsToShow.forEach(c => {
+    c.style.display = 'flex'; // o 'block', piso-card suele usar flex si es grid/flex interior, pero a es block por defecto. pisos.css usa grid, así que con display '' (vacío) vuelve a su estado normal.
+    c.style.display = ''; 
+  });
+  
+  // Actualizar contador
+  document.querySelector('.results-count span').textContent = filteredCards.length;
+  
+  // Actualizar botones de paginación
+  const totalPages = Math.ceil(filteredCards.length / ITEMS_PER_PAGE) || 1;
+  const pageBtns = document.querySelectorAll('.pagination .page-btn:not(.icon-btn)');
+  
+  pageBtns.forEach(btn => {
+    const num = parseInt(btn.textContent);
+    btn.classList.remove('active');
+    if (num === page) btn.classList.add('active');
+    
+    if (num > totalPages) {
+      btn.style.display = 'none';
+    } else {
+      btn.style.display = 'inline-flex';
+    }
+  });
+}
+
+// Inicializar
+renderPage(1);
+
+const chips = document.querySelectorAll('.chip');
+chips.forEach(chip => {
+  chip.addEventListener('click', () => {
+    chips.forEach(c => c.classList.remove('active'));
+    chip.classList.add('active');
+    
+    // Filtrar por chip (básico)
+    const filter = chip.textContent.trim();
+    if (filter === 'Todos') {
+      filteredCards = [...allCards];
+    } else {
+      filteredCards = allCards.filter(c => c.textContent.includes(filter));
+    }
+    renderPage(1);
+  });
+});
+
+document.querySelector('.search-btn').addEventListener('click', () => {
+  const city = document.getElementById('searchInput').value;
+  if (!city) {
+    alert('Por favor selecciona una ciudad primero.');
+    return;
+  }
+  
+  document.getElementById('resultsLabel').textContent = `alojamientos en ${city}`;
+  
+  // Filtrar
+  filteredCards = allCards.filter(c => c.textContent.includes(city));
+  
+  // Quitar el active del chip 'Todos'
+  chips.forEach(c => c.classList.remove('active'));
+  
+  renderPage(1);
+});
+
+document.querySelectorAll('.pagination .page-btn').forEach(btn => {
+  if (btn.classList.contains('icon-btn')) return; // ignorar flechas
+  btn.addEventListener('click', () => {
+    const num = parseInt(btn.textContent);
+    renderPage(num);
+    window.scrollTo({ top: document.querySelector('.pisos-main').offsetTop - 100, behavior: 'smooth' });
+  });
+});
+
+document.querySelectorAll('.pagination .icon-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const totalPages = Math.ceil(filteredCards.length / ITEMS_PER_PAGE) || 1;
+    let targetNum = currentPage;
+    
+    if (btn.innerHTML.includes('x1="19"')) { // flecha izq
+      targetNum = Math.max(1, targetNum - 1);
+    } else { // flecha der
+      targetNum = Math.min(totalPages, targetNum + 1);
+    }
+    
+    renderPage(targetNum);
+    window.scrollTo({ top: document.querySelector('.pisos-main').offsetTop - 100, behavior: 'smooth' });
+  });
+});
+
+</script>
+<script src="../js/shared.js"></script>
+</body>
+</html>
+
+
