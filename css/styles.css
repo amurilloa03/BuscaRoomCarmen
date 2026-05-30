@@ -147,6 +147,15 @@ button {
   stroke-width: 1.75;
 }
 
+/* ─── Font Awesome icon sizing ──────────────────────────────── */
+i.fa-solid, i.fa-regular, i.fa-brands {
+  flex-shrink: 0;
+  font-size: 1.25rem;
+}
+i.icon-sm { font-size: 1rem; }
+i.icon-lg { font-size: 1.5rem; }
+i.icon-xl { font-size: 3rem; }
+
 /* ─── Buttons ───────────────────────────────────────────────── */
 .btn {
   display: inline-flex;
@@ -633,6 +642,11 @@ button {
   stroke-width: 2;
   stroke-linecap: round;
   stroke-linejoin: round;
+}
+
+.feature-icon i {
+  font-size: 2.5rem;
+  color: var(--primary);
 }
 
 .feature-title {
