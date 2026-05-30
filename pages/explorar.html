@@ -23,7 +23,7 @@
         <svg class="icon" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
         <span id="panelLinkText">Mi Panel</span>
       </a>
-      <button id="themeToggle" class="nav-icon-btn" title="Cambiar tema">
+      <button id="themeToggle" class="nav-icon-btn" title="Cambiar tema" aria-label="Cambiar tema">
         <svg class="icon icon-moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
         <svg class="icon icon-sun" viewBox="0 0 24 24" style="display:none"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
       </button>
@@ -49,8 +49,9 @@
 <div class="explorar-content">
 
   <div class="city-search">
+    <label for="citySelect" class="visually-hidden">Ciudad</label>
     <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-    <select id="citySelect" class="city-select">
+    <select id="citySelect" class="city-select" aria-label="Seleccionar ciudad">
       <option value="Madrid" selected>Madrid</option>
       <option value="Barcelona">Barcelona</option>
       <option value="Valencia">Valencia</option>
@@ -69,13 +70,13 @@
   <div class="swipe-stack" id="swipeStack"></div>
 
   <div class="swipe-actions">
-    <button class="btn-skip" id="btnSkip" title="Pasar">
+    <button class="btn-skip" id="btnSkip" title="Pasar" aria-label="Pasar">
       <svg class="icon icon-lg" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
     </button>
-    <button class="btn-like" id="btnLike" title="Me gusta">
+    <button class="btn-like" id="btnLike" title="Me gusta" aria-label="Me gusta">
       <svg width="28" height="28" viewBox="0 0 24 24" fill="white" stroke="none"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
     </button>
-    <button class="btn-skip" id="btnProfile" title="Ver perfil" style="border-color:var(--primary);color:var(--primary);">
+    <button class="btn-skip" id="btnProfile" title="Ver perfil" aria-label="Ver perfil" style="border-color:var(--primary);color:var(--primary);">
       <svg class="icon icon-lg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
     </button>
   </div>
@@ -88,7 +89,7 @@
 <div class="profile-modal" id="profileModal">
   <div class="profile-modal-backdrop" id="modalBackdrop"></div>
   <div class="profile-modal-sheet" id="modalSheet">
-    <button class="modal-close-btn" id="modalClose">
+    <button class="modal-close-btn" id="modalClose" aria-label="Cerrar">
       <svg class="icon" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
     </button>
     <div class="modal-photo-wrap">
@@ -97,7 +98,7 @@
       <div class="modal-compat-badge" id="modalCompatBadge"></div>
     </div>
     <div class="modal-body">
-      <h2 class="modal-name" id="modalName"></h2>
+      <h2 class="modal-name" id="modalName" aria-label="Nombre del perfil"> </h2>
       <div class="modal-location" id="modalLocation"></div>
       <div class="modal-tags-row" id="modalTagsRow"></div>
       <p class="modal-bio-text" id="modalBioText"></p>
